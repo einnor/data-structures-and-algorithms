@@ -12,17 +12,20 @@ class SinglyLinkedList <T> {
       return { message: 'Out of range error' };
     }
 
-    if (this.head === null && index === 0) {
-      this.head = node;
-      this.tail = node;
-      this.length = 1;
+    if (index === 0) {
+      this.addFirst(node);
+      return;
+    }
+
+    if (index === this.length) {
+      this.addLast(node);
       return;
     }
 
     if (this.head !== null) {
-      let idx: number = 0;
+      let idx: number = 1;
       let current = this.head;
-      let previous = null;
+      let previous: INode <T>;
 
       while (current.next !== null) {
         previous = current;
