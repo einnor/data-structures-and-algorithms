@@ -22,7 +22,7 @@ class SinglyLinkedList <T> {
     if (this.head !== null) {
       let idx: number = 0;
       let current = this.head;
-      let previous = this.head;
+      let previous = null;
 
       while (current.next !== null) {
         previous = current;
@@ -65,7 +65,27 @@ class SinglyLinkedList <T> {
     this.length = this.length + 1;
   }
 
-  remove (node: INode <T>, index: number) {}
+  remove (index: number) : INode <T> | IError | undefined {
+    if (index > this.length || index < 0 || this.head === null || this.tail === null) {
+      return { message: 'Out of range error' };
+    }
+
+    let idx: number = 0;
+    let previous = null;
+    let current = this.head;
+
+    while (current.next !== null) {
+      previous = current;
+      current = current.next;
+      if (idx === index) {
+        previous.next = current.next;
+        this.length = this.length - 1;
+        return current;
+      }
+
+      idx = idx + 1;
+    }
+  }
 
   removeFirst () : INode <T> | IError {
     if (this.length === 0 || this.head === null) {
