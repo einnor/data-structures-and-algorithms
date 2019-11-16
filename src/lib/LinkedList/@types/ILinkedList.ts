@@ -10,6 +10,7 @@ type ILinkedList <T> = {
   remove: (node: INode <T>, position: number) => void;
   removeFirst: (node: INode <T>) => void;
   removeLast: (node: INode <T>) => void;
+  find: (value: T) => INode <T> | undefined;
   reset: () => void;
 };
 
