@@ -78,4 +78,17 @@ describe('Singly Linked List', () => {
     expect(node3.next).toBe(node4);
     expect(linkedList.length).toBe(4);
   });
+
+  it('should reset to default', () => {
+    const linkedList: ILinkedList <number> = new SinglyLinkedList();
+    const node1: INode<number> = new Node({ value: 1, next: null });
+    const node2: INode<number> = new Node({ value: 2, next: null });
+
+    linkedList.addFirst(node1);
+    linkedList.addFirst(node2);
+    linkedList.reset();
+    expect(linkedList.head).toBeNull();
+    expect(linkedList.tail).toBeNull();
+    expect(linkedList.length).toBe(0);
+  });
 });
