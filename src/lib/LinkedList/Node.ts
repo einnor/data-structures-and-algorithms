@@ -1,9 +1,9 @@
 import { INode } from './@types';
 
 class Node <T> {
-  value: T | null;
-  next: INode <T> | null;
-  previous: INode <T> | null | undefined;
+  value: T | null = null;
+  next: INode <T> | null = null;
+  previous: INode <T> | null | undefined = undefined;
 
   constructor ({ value, next, previous }: INode <T>) {
     this.value = value;

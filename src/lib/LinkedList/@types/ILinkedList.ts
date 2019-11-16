@@ -1,8 +1,8 @@
 import INode from './INode';
 
 type ILinkedList <T> = {
-  head: INode <T>;
-  tail: INode <T>
+  head: INode <T> | null;
+  tail: INode <T> | null;
   length: number;
   add: (node: INode <T>, position: number) => void;
   addFirst: (node: INode <T>) => void;
