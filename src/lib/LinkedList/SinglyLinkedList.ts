@@ -75,7 +75,15 @@ class SinglyLinkedList <T> {
       return { message: 'Out of range error' };
     }
 
-    let idx: number = 0;
+    if (index === 0) {
+      return this.removeFirst();
+    }
+
+    if (index === this.length - 1) {
+      return this.removeLast();
+    }
+
+    let idx: number = 1;
     let previous = null;
     let current = this.head;
 

@@ -134,6 +134,38 @@ describe('Singly Linked List', () => {
     expect(linkedList.tail).toBeNull();
   });
 
+  it('should remove a node at a specific position in the node chain', () => {
+    const linkedList: ILinkedList <number> = new SinglyLinkedList();
+
+    expect(linkedList.remove(100)).toEqual({ message: 'Out of range error' });
+    expect(linkedList.remove(-1)).toEqual({ message: 'Out of range error' });
+
+    const node1: INode<number> = new Node({ value: 1, next: null });
+    const node2: INode<number> = new Node({ value: 2, next: null });
+    const node3: INode<number> = new Node({ value: 3, next: null });
+    linkedList.addFirst(node3);
+    linkedList.addFirst(node2);
+    linkedList.addFirst(node1);
+    expect(linkedList.length).toBe(3);
+    expect(linkedList.head).toEqual(node1);
+    expect(linkedList.tail).toEqual(node3);
+
+    expect(linkedList.remove(1)).toEqual(new Node({ value: 2, next: node3 }));
+    expect(linkedList.length).toBe(2);
+    expect(linkedList.head).toEqual(node1);
+    expect(linkedList.tail).toEqual(node3);
+
+    expect(linkedList.remove(1)).toEqual(node3);
+    expect(linkedList.length).toBe(1);
+    expect(linkedList.head).toEqual(node1);
+    expect(linkedList.tail).toEqual(node1);
+
+    expect(linkedList.remove(0)).toEqual(node1);
+    expect(linkedList.length).toBe(0);
+    expect(linkedList.head).toBeNull();
+    expect(linkedList.tail).toBeNull();
+  });
+
   it('should find a node by value', () => {
     const linkedList: ILinkedList <number> = new SinglyLinkedList();
     const node1: INode<number> = new Node({ value: 1, next: null });
