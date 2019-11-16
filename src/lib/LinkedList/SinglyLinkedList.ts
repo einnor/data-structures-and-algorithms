@@ -65,7 +65,7 @@ class SinglyLinkedList <T> {
     this.length = this.length + 1;
   }
 
-  remove (index: number) : INode <T> | IError | undefined {
+  remove (index: number) : INode <T> | IError {
     if (index > this.length || index < 0 || this.head === null || this.tail === null) {
       return { message: 'Out of range error' };
     }
@@ -85,6 +85,8 @@ class SinglyLinkedList <T> {
 
       idx = idx + 1;
     }
+
+    return current;
   }
 
   removeFirst () : INode <T> | IError {
