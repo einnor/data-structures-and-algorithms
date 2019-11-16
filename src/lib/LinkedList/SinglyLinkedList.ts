@@ -22,7 +22,18 @@ class SinglyLinkedList <T> {
     this.length = this.length + 1;
   }
 
-  addLast (node: INode <T>) {}
+  addLast (node: INode <T>) : void {
+    if (this.length === 0 || this.head === null) {
+      this.head = node;
+      this.tail = node;
+      this.length = 1;
+    }
+
+    const currentLast = this.tail;
+    node.next = currentLast;
+    this.tail = node;
+    this.length = this.length + 1;
+  }
 
   remove (node: INode <T>, position: number) {}
 
