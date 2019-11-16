@@ -44,6 +44,7 @@ class SinglyLinkedList <T> {
       this.head = node;
       this.tail = node;
       this.length = 1;
+      return;
     }
 
     const currentFirst = this.head;
@@ -57,6 +58,7 @@ class SinglyLinkedList <T> {
       this.head = node;
       this.tail = node;
       this.length = 1;
+      return;
     }
 
     const currentLast = this.tail;
