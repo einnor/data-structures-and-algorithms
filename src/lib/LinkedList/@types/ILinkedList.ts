@@ -1,4 +1,5 @@
 import INode from './INode';
+import { IError } from '../../../@types';
 
 type ILinkedList <T> = {
   head: INode <T> | null;
@@ -8,8 +9,8 @@ type ILinkedList <T> = {
   addFirst: (node: INode <T>) => void;
   addLast: (node: INode <T>) => void;
   remove: (node: INode <T>, position: number) => void;
-  removeFirst: (node: INode <T>) => void;
-  removeLast: (node: INode <T>) => void;
+  removeFirst: () => void;
+  removeLast: () => INode <T> | IError;
   find: (value: T) => INode <T> | undefined;
   reset: () => void;
 };

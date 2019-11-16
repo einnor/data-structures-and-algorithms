@@ -1,5 +1,5 @@
 import { ILinkedList, INode } from './@types';
-import {isNull} from 'util';
+import { IError } from '../../@types';
 
 class SinglyLinkedList <T> {
   head: INode <T> | null = null;
@@ -15,19 +15,46 @@ class SinglyLinkedList <T> {
 
   remove (node: INode <T>, position: number) {}
 
-  removeFirst (node: INode <T>) {}
+  removeFirst () {}
 
-  removeLast (node: INode <T>) {}
+  removeLast (): INode <T> | IError {
+    if (this.length === 0 || this.head === null) {
+      return { message: 'Invalid operation. Length of the linked list is 0' };
+    }
+
+    let removedNode: INode <T>;
+
+    if (this.length === 1) {
+      removedNode = this.head;
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+      return removedNode;
+    }
+
+    let previous: INode <T> = this.head;
+    let current = this.head;
+
+    while (current.next !== null) {
+      previous = current;
+      current = current.next;
+    }
+
+    previous.next === null;
+    this.tail = previous;
+
+    return current;
+  }
 
   find (value: T) : INode <T> | undefined {
     let current = this.head;
 
-    if (isNull(current)) {
+    if (this.length === 0 || this.head === null) {
       return undefined;
     }
 
     do {
-      if (isNull(current) || isNull (current.next)) {
+      if (current === null || current.next === null) {
         return undefined;
       }
 
@@ -40,6 +67,7 @@ class SinglyLinkedList <T> {
 
     return undefined;
   }
+
   reset () : void {
     this.head = null;
     this.tail = null;
