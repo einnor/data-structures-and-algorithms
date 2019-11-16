@@ -54,7 +54,7 @@ class SinglyLinkedList <T> {
   }
 
   addLast (node: INode <T>) : void {
-    if (this.length === 0 || this.head === null) {
+    if (this.length === 0 || this.head === null || this.tail === null) {
       this.head = node;
       this.tail = node;
       this.length = 1;
@@ -62,7 +62,7 @@ class SinglyLinkedList <T> {
     }
 
     const currentLast = this.tail;
-    node.next = currentLast;
+    currentLast.next = node;
     this.tail = node;
     this.length = this.length + 1;
   }

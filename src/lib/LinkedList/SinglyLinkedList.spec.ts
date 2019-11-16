@@ -27,4 +27,21 @@ describe('Singly Linked List', () => {
     expect(node2.next).toBe(node1);
     expect(linkedList.length).toBe(2);
   });
+
+  it('should add last', () => {
+    const linkedList: ILinkedList <number> = new SinglyLinkedList();
+    const node1: INode<number> = new Node({ value: 1, next: null });
+
+    linkedList.addLast(node1);
+    expect(linkedList.head).toBe(node1);
+    expect(linkedList.tail).toBe(node1);
+    expect(linkedList.length).toBe(1);
+
+    const node2: INode<number> = new Node({ value: 2, next: null });
+    linkedList.addLast(node2);
+    expect(linkedList.head).toBe(node1);
+    expect(linkedList.tail).toBe(node2);
+    expect(node1.next).toBe(node2);
+    expect(linkedList.length).toBe(2);
+  });
 });
