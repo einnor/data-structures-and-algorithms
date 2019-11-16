@@ -12,7 +12,11 @@ class SinglyLinkedList <T> {
   remove (node: INode <T>, position: number) {}
   removeFirst (node: INode <T>) {}
   removeLast (node: INode <T>) {}
-  reset () {}
+  reset () {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
 }
 
 export default SinglyLinkedList;
