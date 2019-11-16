@@ -79,7 +79,23 @@ describe('Singly Linked List', () => {
     expect(linkedList.length).toBe(4);
   });
 
-  it('should reset to default', () => {
+  it('should find a node by value', () => {
+    const linkedList: ILinkedList <number> = new SinglyLinkedList();
+    const node1: INode<number> = new Node({ value: 1, next: null });
+    const node2: INode<number> = new Node({ value: 2, next: null });
+    const node3: INode<number> = new Node({ value: 3, next: null });
+
+    linkedList.addFirst(node3);
+    linkedList.addFirst(node2);
+    linkedList.addFirst(node1);
+    expect(linkedList.length).toBe(3);
+    expect(linkedList.find(1)).toEqual(new Node({ value: 1, next: node2 }));
+    expect(linkedList.find(2)).toEqual(new Node({ value: 2, next: node3 }));
+    expect(linkedList.find(3)).toEqual(node3);
+    expect(linkedList.find(4)).toBeUndefined();
+  });
+
+  it('should reset to defaults', () => {
     const linkedList: ILinkedList <number> = new SinglyLinkedList();
     const node1: INode<number> = new Node({ value: 1, next: null });
     const node2: INode<number> = new Node({ value: 2, next: null });

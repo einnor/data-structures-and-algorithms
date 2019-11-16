@@ -143,23 +143,24 @@ class SinglyLinkedList <T> {
   }
 
   find (value: T) : INode <T> | undefined {
-    let current = this.head;
-
     if (this.length === 0 || this.head === null) {
       return undefined;
     }
 
-    do {
-      if (current === null || current.next === null) {
-        return undefined;
-      }
+    let current = this.head;
+    let idx = 0;
 
+    while (idx < this.length) {
       if (current.value === value) {
         return current;
       }
 
+      if (!current.next) {
+        return undefined;
+      }
+
       current = current.next;
-    } while (current.next !== null);
+    }
 
     return undefined;
   }
