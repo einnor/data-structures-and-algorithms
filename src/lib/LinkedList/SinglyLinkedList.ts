@@ -7,7 +7,37 @@ class SinglyLinkedList <T> {
   length: number = 0;
 
 
-  add (node: INode <T>, position: number) {}
+  add (node: INode <T>, index: number) : void | IError {
+    if (index > this.length || index < 0) {
+      return { message: 'Out of range error' };
+    }
+
+    if (this.head === null && index === 0) {
+      this.head = node;
+      this.tail = node;
+      this.length = 1;
+      return;
+    }
+
+    if (this.head !== null) {
+      let idx: number = 0;
+      let current = this.head;
+      let previous = this.head;
+
+      while (current.next !== null) {
+        previous = current;
+        current = current.next;
+        if (idx === index) {
+          previous.next = node;
+          node.next = current;
+          this.length = this.length + 1;
+          return;
+        }
+
+        idx = idx + 1;
+      }
+    }
+  }
 
   addFirst (node: INode <T>) : void {
     if (this.length === 0 || this.head === null) {
@@ -35,7 +65,7 @@ class SinglyLinkedList <T> {
     this.length = this.length + 1;
   }
 
-  remove (node: INode <T>, position: number) {}
+  remove (node: INode <T>, index: number) {}
 
   removeFirst () {}
 
