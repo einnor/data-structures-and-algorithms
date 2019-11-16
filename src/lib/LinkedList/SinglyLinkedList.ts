@@ -67,17 +67,33 @@ class SinglyLinkedList <T> {
 
   remove (node: INode <T>, index: number) {}
 
-  removeFirst () {}
-
-  removeLast (): INode <T> | IError {
+  removeFirst () : INode <T> | IError {
     if (this.length === 0 || this.head === null) {
       return { message: 'Invalid operation. Length of the linked list is 0' };
     }
 
-    let removedNode: INode <T>;
+    const removedNode: INode <T> = this.head;
 
     if (this.length === 1) {
-      removedNode = this.head;
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+      return removedNode;
+    }
+
+    this.head = removedNode.next;
+    this.length = this.length - 1;
+    return removedNode
+  }
+
+  removeLast () : INode <T> | IError {
+    if (this.length === 0 || this.head === null || this.tail === null) {
+      return { message: 'Invalid operation. Length of the linked list is 0' };
+    }
+
+    const removedNode: INode <T> = this.tail;
+
+    if (this.length === 1) {
       this.head = null;
       this.tail = null;
       this.length = 0;
@@ -96,7 +112,7 @@ class SinglyLinkedList <T> {
     this.tail = previous;
     this.length = this.length - 1;
 
-    return current;
+    return removedNode;
   }
 
   find (value: T) : INode <T> | undefined {
