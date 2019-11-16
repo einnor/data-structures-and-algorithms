@@ -127,17 +127,19 @@ class SinglyLinkedList <T> {
       return removedNode;
     }
 
-    let previous: INode <T> = this.head;
+    let previous: INode <T>;
     let current = this.head;
 
     while (current.next !== null) {
       previous = current;
       current = current.next;
-    }
 
-    previous.next === null;
-    this.tail = previous;
-    this.length = this.length - 1;
+      if (current.next === null) {
+        previous.next = null;
+        this.tail = previous;
+        this.length = this.length - 1;
+      }
+    }
 
     return removedNode;
   }
