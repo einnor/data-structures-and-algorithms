@@ -1,0 +1,19 @@
+@import '../../styles/variables';
+
+.app-container {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  height: 100vh;
+
+  @media (max-width: $mobile-width) {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0px 1fr;
+  }
+}
+
+.app-content-container {
+  display: grid;
+  grid-template-rows: minmax(min-content, 71px) max-content;
+  row-gap: 1rem;
+}

@@ -17,11 +17,9 @@ const AppLayout= ({ children }: Props) => {
     <div className="app-container">
       <SideMenu>
         <BrandLogo brandName="Data Structures & Algorithms" />
-        <div className="menu-item-wrapper">
-          <Menu />
-        </div>
+        <Menu />
       </SideMenu>
-      <div className="main-content-container">
+      <div className="app-content-container">
         {children}
       </div>
     </div>

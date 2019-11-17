@@ -8,7 +8,7 @@ import './style.scss';
 
 const Menu = () => {
   return (
-    <div className="menu-item-wrapper">
+    <div className="menu-wrapper">
       {
         menuList.map((item: IMenuItem) => (<MenuItem item={item} />)
       )}
