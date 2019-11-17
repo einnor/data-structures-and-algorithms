@@ -19,9 +19,9 @@ const AppLayout= ({ children }: Props) => {
         <BrandLogo brandName="Data Structures & Algorithms" />
         <Menu />
       </SideMenu>
-      <div className="app-content-container">
+      {/* <div className="app-content-container">
         {children}
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp, faChevronDown, faDotCircle } from '@fortawesome/free-solid-svg-icons'
 import { withRouter, RouteComponentProps } from 'react-router';
 
 import { IMenuItem } from '../../@types';
@@ -43,9 +44,9 @@ const MenuItem = ({ item, history }: Props & RouteComponentProps) => {
           <div className="menu-item__right">
             {
               isOpen ? (
-                <FontAwesomeIcon icon="chevron-up" />
+                <FontAwesomeIcon icon={faChevronUp} />
               ) : (
-                <FontAwesomeIcon icon="chevron-down" />
+                <FontAwesomeIcon icon={faChevronDown} />
               )
             }
           </div>
@@ -62,7 +63,7 @@ const MenuItem = ({ item, history }: Props & RouteComponentProps) => {
               <div className="menu-item__left">
                 {
                   item.icon ? (
-                    <FontAwesomeIcon icon="dot-circle" />
+                    <FontAwesomeIcon icon={faDotCircle} />
                   ) :
                   null
                 }

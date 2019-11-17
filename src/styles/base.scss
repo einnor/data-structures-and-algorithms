@@ -1,0 +1,15 @@
+@import './fonts';
+@import './variables';
+
+body {
+  font-family: $body-font;
+  background: $light-primary-color;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}

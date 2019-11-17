@@ -19,7 +19,7 @@
   }
 
   & > span {
-    background-color: $brown-4;
+    background-color: $primary-color;
     display: none;
     position: absolute;
     width: 100%;
@@ -55,6 +55,7 @@
       align-items: center;
       color: $white;
       width: max-content;
+      margin-left: 10px;
     }
   }
 
@@ -64,6 +65,7 @@
     align-items: center;
     justify-content: flex-end;
     width: 0.5rem;
+    font-size: 10px;
   }
 }
 

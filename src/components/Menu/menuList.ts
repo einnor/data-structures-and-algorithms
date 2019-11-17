@@ -1,3 +1,5 @@
+import { faLink, faLayerGroup,faEllipsisH, faTree, faTable } from '@fortawesome/free-solid-svg-icons'
+
 import { IMenuItem } from '../../@types';
 
 const menuList: IMenuItem[] = [
@@ -5,7 +7,7 @@ const menuList: IMenuItem[] = [
     id: 'linked-lists',
     text: 'Linked Lists',
     path: '/linked-lists',
-    icon: 'link',
+    icon: faLink,
     children: [
       {
         text: 'Single',
@@ -21,28 +23,28 @@ const menuList: IMenuItem[] = [
     id: 'stacks',
     text: 'Stacks',
     path: '/stacks',
-    icon: 'layer-group',
+    icon: faLayerGroup,
     children: null
   },
   {
     id: 'queues',
     text: 'Queues',
     path: '/queues',
-    icon: 'ellipsis-h',
+    icon: faEllipsisH,
     children: null
   },
   {
     id: 'binary-trees',
     text: 'Binary Trees',
     path: '/binary-trees',
-    icon: 'tree',
+    icon: faTree,
     children: null
   },
   {
     id: 'hash-tables',
     text: 'Hash Tables',
     path: '/hash-tables',
-    icon: 'table',
+    icon: faTable,
     children: null
   },
 ];
