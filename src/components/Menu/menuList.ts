@@ -1,8 +1,15 @@
-import { faLink, faLayerGroup,faEllipsisH, faTree, faTable } from '@fortawesome/free-solid-svg-icons'
+import { faLink, faLayerGroup,faEllipsisH, faTree, faTable, faHome } from '@fortawesome/free-solid-svg-icons'
 
 import { IMenuItem } from '../../@types';
 
 const menuList: IMenuItem[] = [
+  {
+    id: 'home',
+    text: 'Home',
+    path: '/',
+    icon: faHome,
+    children: null
+  },
   {
     id: 'linked-lists',
     text: 'Linked Lists',

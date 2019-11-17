@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronUp, faChevronDown, faDotCircle } from '@fortawesome/free-solid-svg-icons'
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { withRouter, RouteComponentProps } from 'react-router';
 
 import { IMenuItem } from '../../@types';
@@ -18,7 +18,7 @@ const MenuItem = ({ item, history }: Props & RouteComponentProps) => {
   const isActive = (path: string): boolean => history.location.pathname.startsWith(path);
 
   const handleItemClick = (item: IMenuItem): void => {
-    if (!item.children) {
+    if (Array.isArray(item.children)) {
       setIsOpen(!isOpen);
     } else {
       history.push(item.path);
@@ -26,55 +26,50 @@ const MenuItem = ({ item, history }: Props & RouteComponentProps) => {
   };
 
   return (
-    <div
-      className={`menu-item ${isActive(item.path) ? 'menu-item--active' : ''}`}
-      onClick={() => handleItemClick(item)}
-    >
-      <div className="menu-item__left">
+    <>
+      <div
+        className={`menu-item ${isActive(item.path) ? 'menu-item--active' : ''}`}
+        onClick={() => handleItemClick(item)}
+      >
+        <div className="menu-item__left">
+          {
+            item.icon ? (
+              <FontAwesomeIcon icon={item.icon} />
+            ) :
+            null
+          }
+          <span className="menu-item__left__text">{item.text}</span>
+        </div>
         {
-          item.icon ? (
-            <FontAwesomeIcon icon={item.icon} />
+          item.children && item.children.length ? (
+            <div className="menu-item__right">
+              {
+                isOpen ? (
+                  <FontAwesomeIcon icon={faChevronUp} />
+                ) : (
+                  <FontAwesomeIcon icon={faChevronDown} />
+                )
+              }
+            </div>
           ) :
           null
         }
-        <span className="menu-item__left__text">{item.text}</span>
       </div>
       {
-        item.children && item.children.length ? (
-          <div className="menu-item__right">
-            {
-              isOpen ? (
-                <FontAwesomeIcon icon={faChevronUp} />
-              ) : (
-                <FontAwesomeIcon icon={faChevronDown} />
-              )
-            }
-          </div>
-        ) :
-        null
-      }
-      <div className="plain-drop-down-content-wrapper">
-        {
-          isOpen && item.children ? item.children.map((child) => (
-            <div
-              className={`menu-item ${isActive(item.path) ? 'menu-item--active' : ''} menu-item--is-child`}
-              onClick={() => handleItemClick(item)}
-            >
-              <div className="menu-item__left">
-                {
-                  item.icon ? (
-                    <FontAwesomeIcon icon={faDotCircle} />
-                  ) :
-                  null
-                }
-                <span className="menu-item__left__text">{item.text}</span>
-              </div>
-              <span className="nested" />
+        isOpen && item.children ? item.children.map((child) => (
+          <div
+            key={child.text.replace(' ', '')}
+            className={`menu-item ${isActive(item.path) ? 'menu-item--active' : ''} menu-item--is-child`}
+            onClick={() => handleItemClick(item)}
+          >
+            <div className="menu-item__left">
+              <span className="menu-item__left__text">{item.text}</span>
             </div>
-          )) : null
-        }
-      </div>
-    </div>
+            <span className="nested" />
+          </div>
+        )) : null
+      }
+    </>
   );
 };
 

@@ -10,7 +10,7 @@ const Menu = () => {
   return (
     <div className="menu-wrapper">
       {
-        menuList.map((item: IMenuItem) => (<MenuItem item={item} />)
+        menuList.map((item: IMenuItem) => (<MenuItem key={item.id} item={item} />)
       )}
     </div>
   );
