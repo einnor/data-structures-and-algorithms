@@ -15,14 +15,15 @@ const MenuItem = ({ item, history }: Props & RouteComponentProps) => {
 
   const [isOpen, setIsOpen] = useState(history.location.pathname.startsWith(item.path));
 
-  const isActive = (path: string): boolean => history.location.pathname.startsWith(path);
+  const isActive = (path: string): boolean => history.location.pathname === path;
 
   const handleItemClick = (item: IMenuItem): void => {
     if (Array.isArray(item.children)) {
       setIsOpen(!isOpen);
-    } else {
-      history.push(item.path);
+      return;
     }
+
+    history.push(item.path);
   };
 
   return (
@@ -59,11 +60,11 @@ const MenuItem = ({ item, history }: Props & RouteComponentProps) => {
         isOpen && item.children ? item.children.map((child) => (
           <div
             key={child.text.replace(' ', '')}
-            className={`menu-item ${isActive(item.path) ? 'menu-item--active' : ''} menu-item--is-child`}
-            onClick={() => handleItemClick(item)}
+            className={`menu-item ${isActive(child.path) ? 'menu-item--active' : ''} menu-item--is-child`}
+            onClick={() => history.push(child.path)}
           >
             <div className="menu-item__left">
-              <span className="menu-item__left__text">{item.text}</span>
+              <span className="menu-item__left__text">{child.text}</span>
             </div>
             <span className="nested" />
           </div>

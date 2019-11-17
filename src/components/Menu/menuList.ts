@@ -17,7 +17,7 @@ const menuList: IMenuItem[] = [
     icon: faLink,
     children: [
       {
-        text: 'Single',
+        text: 'Singly',
         path: '/linked-lists/singly',
       },
       {
