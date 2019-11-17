@@ -1,0 +1,72 @@
+@import '../../styles/variables';
+
+.menu-item {
+  display: grid;
+  grid-template-columns: auto auto;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  color: inherit;
+  padding-left: 1rem;
+  padding-right: 0.79rem;
+
+  &--isChild {
+    padding-left: 2.1rem;
+  }
+
+  &:hover {
+    background-color: $accent-color;
+  }
+
+  & > span {
+    background-color: $brown-4;
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: -5;
+    &:first-child {
+      color: white;
+    }
+  }
+
+  &--active > .nested {
+    background-color: rgba(0, 0, 0, 0.42);
+  }
+
+  &--active > span {
+    display: block;
+  }
+
+  &__left {
+    display: grid;
+    grid-template-columns: 1rem 1fr;
+    grid-gap: 0.1rem;
+    align-items: center;
+    padding: 0.45rem 0;
+
+    &__text {
+      display: flex;
+      font-weight: bold;
+      font-size: 0.55rem;
+      text-transform: uppercase;
+      align-items: center;
+      color: $white;
+      width: max-content;
+    }
+  }
+
+  &__right {
+    justify-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 0.5rem;
+  }
+}
+
+.nested {
+  display: block;
+}
