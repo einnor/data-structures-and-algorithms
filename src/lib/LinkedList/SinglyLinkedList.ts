@@ -1,4 +1,4 @@
-import { ILinkedList, INode } from './@types';
+import { INode } from './@types';
 import { IError } from '../../@types';
 
 class SinglyLinkedList <T> {
