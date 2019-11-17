@@ -1,15 +1,17 @@
-import React, { ReactChildren } from 'react';
+import React, { ReactNode } from 'react';
 
 import './style.scss';
 
 type Props = {
-  children: ReactChildren;
+  children: ReactNode;
 };
 
 const SideMenu = ({ children }: Props) => {
   return (
-    <div className="side-menu">
-      {children}
+    <div className="side-menu-wrapper">
+      <div className="side-menu">
+        {children}
+      </div>
     </div>
   );
 };
