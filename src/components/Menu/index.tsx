@@ -1,5 +1,4 @@
-import React, { useState, ReactNode } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 
 import MenuItem from '../MenuItem';
 import menuList from './menuList';
