@@ -5,7 +5,7 @@ type IMenuItem = {
   text: string,
   path: string,
   icon: string,
-  children: IMenuItemChild[],
+  children: IMenuItemChild[] | null,
 };
 
 export default IMenuItem;

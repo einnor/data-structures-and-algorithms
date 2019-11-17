@@ -1,4 +1,6 @@
-const menuList = [
+import { IMenuItem } from '../../@types';
+
+const menuList: IMenuItem[] = [
   {
     id: 'linked-lists',
     text: 'Linked Lists',
