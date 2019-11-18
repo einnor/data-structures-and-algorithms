@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 
-import { AppLayout, Tabs } from '../../components';
+import { AppLayout, Tabs, TabPanel } from '../../components';
 import NodeChain from './NodeChain';
 import { default as LinkedList } from '../../lib/LinkedList/SinglyLinkedList';
 import Node from '../../lib/LinkedList/Node';
@@ -25,6 +25,23 @@ const SinglyLinkedList = () => {
 
   const onSwitch = (value: string) => setSelectedTab(value);
 
+  const switchContent = (): ReactNode => {
+    switch (selectedTab) {
+      case 'add-first':
+        return addFirstPanel();
+      default:
+        return (
+          <div>Select an action to get started</div>
+        );
+    }
+  };
+
+  const addFirstPanel = (): ReactNode => (
+    <div className="form">
+      <input type="text" />
+    </div>
+  )
+
   const linkedList: ILinkedList <number> = new LinkedList();
   const node1: INode<number> = new Node({ value: 1, next: null });
   const node2: INode<number> = new Node({ value: 2, next: null });
@@ -37,6 +54,7 @@ const SinglyLinkedList = () => {
     <AppLayout>
       <>
         <Tabs tabs={tabs} onSwitch={onSwitch} />
+        <TabPanel content={switchContent()} />
         {
           linkedList.head ? (
             <div className="node-chain">

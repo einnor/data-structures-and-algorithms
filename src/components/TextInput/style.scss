@@ -1,0 +1,22 @@
+@import '../../styles/variables';
+
+.text-input {
+  border: 0;
+  padding: 7px 0;
+  border-bottom: 1px solid $divider-color;
+
+  .focus-border{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: $accent-color;
+    transition: 0.4s;
+
+    &:focus {
+      width: 100%; transition: 0.4s;
+    }
+  }
+
+}
