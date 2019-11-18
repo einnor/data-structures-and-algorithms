@@ -1,6 +1,8 @@
 import React from 'react';
 
+import Tab from './Tab';
 import { ITab } from '../../@types';
+
 import './style.scss';
 
 type Props = {

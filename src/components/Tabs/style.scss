@@ -3,6 +3,8 @@
   display: inline-block;
   position: relative;
   white-space: nowrap;
+  overflow-x: scroll;
+  scrollbar-width: none;
 
   .tabs {
     display: flex;
