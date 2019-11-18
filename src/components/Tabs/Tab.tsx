@@ -3,17 +3,17 @@ import { ITab } from '../../@types';
 
 type Props = {
   tab: ITab;
-  onClick: (value: string) => void;
+  onSwitch: (value: string) => void;
   isActive: boolean;
 };
 
-const Tab = ({ tab, onClick, isActive }: Props) => {
+const Tab = (props: Props) => {
 
-  const onSwitch = () => onClick(tab.value);
+  const onSwitch = () => props.onSwitch(props.tab.value);
 
   return (
-    <button className={`tab ${isActive ? 'active' : ''}`} tabIndex={0} onClick={() => onSwitch()}>
-      {tab.text}
+    <button className={`tab ${props.isActive ? 'active' : ''}`} tabIndex={0} onClick={() => onSwitch()}>
+      {props.tab.text}
     </button>
   )
 };
