@@ -1,6 +1,6 @@
 import React, { useState, ReactNode } from 'react';
 
-import { AppLayout, Tabs, TabPanel } from '../../components';
+import { AppLayout, Tabs, TabPanel, TextInput } from '../../components';
 import NodeChain from './NodeChain';
 import { default as LinkedList } from '../../lib/LinkedList/SinglyLinkedList';
 import Node from '../../lib/LinkedList/Node';
@@ -22,6 +22,7 @@ const tabs: ITab[] = [
 const SinglyLinkedList = () => {
 
   const [selectedTab, setSelectedTab] = useState('');
+  const [value, setValue] = useState(undefined);
 
   const onSwitch = (value: string) => setSelectedTab(value);
 
@@ -38,7 +39,7 @@ const SinglyLinkedList = () => {
 
   const addFirstPanel = (): ReactNode => (
     <div className="form">
-      <input type="text" />
+      <TextInput type="number" value={value} onChange={() =>{}} />
     </div>
   )
 
