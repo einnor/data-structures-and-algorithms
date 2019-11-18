@@ -28,10 +28,12 @@
   }
 
   &--primary {
+    color: $white;
     background-color: $button-primary-color;
   }
 
   &--secondary {
+    color: $white;
     background-color: $button-secondary-color;
   }
 }

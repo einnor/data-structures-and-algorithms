@@ -5,6 +5,7 @@ import MenuItem from './MenuItem';
 import Tabs from './Tabs';
 import TabPanel from './TabPanel';
 import TextInput from './TextInput';
+import Button from './Button';
 
 export {
   AppLayout,
@@ -14,4 +15,5 @@ export {
   Tabs,
   TabPanel,
   TextInput,
+  Button,
 };

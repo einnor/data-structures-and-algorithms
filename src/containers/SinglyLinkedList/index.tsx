@@ -1,6 +1,6 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState, ReactNode, ChangeEvent } from 'react';
 
-import { AppLayout, Tabs, TabPanel, TextInput } from '../../components';
+import { AppLayout, Tabs, TabPanel, TextInput, Button } from '../../components';
 import NodeChain from './NodeChain';
 import { default as LinkedList } from '../../lib/LinkedList/SinglyLinkedList';
 import Node from '../../lib/LinkedList/Node';
@@ -19,12 +19,27 @@ const tabs: ITab[] = [
   { text: 'Find', value: 'find' },
 ];
 
+const linkedList: ILinkedList <number> = new LinkedList();
+const node1: INode<number> = new Node({ value: 1, next: null });
+const node2: INode<number> = new Node({ value: 2, next: null });
+const node3: INode<number> = new Node({ value: 3, next: null });
+linkedList.addFirst(node3);
+linkedList.addFirst(node2);
+linkedList.addFirst(node1);
+
 const SinglyLinkedList = () => {
 
   const [selectedTab, setSelectedTab] = useState('');
-  const [value, setValue] = useState(undefined);
+  const [value, setValue] = useState('');
+  const [rerenders, forceRerenders] = useState(0);
 
   const onSwitch = (value: string) => setSelectedTab(value);
+
+  const addFirst = () => {
+    linkedList.addFirst(new Node({ value: parseInt(value, 10), next: null }));
+    forceRerenders(rerenders + 1);
+    setValue('');
+  }
 
   const switchContent = (): ReactNode => {
     switch (selectedTab) {
@@ -37,19 +52,17 @@ const SinglyLinkedList = () => {
     }
   };
 
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const { value } = event.target;
+    setValue(value);
+  };
+
   const addFirstPanel = (): ReactNode => (
     <div className="form">
-      <TextInput type="number" value={value} onChange={() =>{}} />
+      <TextInput type="number" value={value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
+      <Button onClick={() => addFirst()} text="Add Node" />
     </div>
   )
-
-  const linkedList: ILinkedList <number> = new LinkedList();
-  const node1: INode<number> = new Node({ value: 1, next: null });
-  const node2: INode<number> = new Node({ value: 2, next: null });
-  const node3: INode<number> = new Node({ value: 3, next: null });
-  linkedList.addFirst(node3);
-  linkedList.addFirst(node2);
-  linkedList.addFirst(node1);
 
   return (
     <AppLayout>

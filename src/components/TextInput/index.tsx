@@ -3,7 +3,7 @@ import React, {ChangeEvent} from 'react';
 import './style.scss'
 
 type Props = {
-  onChange: (e: ChangeEvent) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   type: 'password' | 'number' | 'email' | 'image' | 'text' | 'file' | 'date' | 'phone' | 'url';
   disabled?: boolean;
@@ -24,6 +24,7 @@ const TextInput = (props: Props) => {
         value={props.value}
         name={props.name}
         id={props.id}
+        onChange={props.onChange}
       />
       <label className="label">{props.label ? props.label : 'Enter value'}</label>
       <span className="focus-border"></span>

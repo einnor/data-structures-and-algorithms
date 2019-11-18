@@ -12,7 +12,7 @@ type Props = {
 const Button = (props: Props) => {
   return (
     <button
-      className={`button ${props.type ? props.type : 'default'}`}
+      className={`button button--${props.type ? props.type : 'default'}`}
       disabled={props.disabled}
       onClick={props.onClick}
     >
