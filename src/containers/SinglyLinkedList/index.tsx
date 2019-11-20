@@ -72,6 +72,11 @@ const SinglyLinkedList = () => {
     resetState();
   }
 
+  const removeFirst = (): void => {
+    linkedList.removeFirst();
+    resetState();
+  }
+
   const switchContent = (): ReactNode => {
     const { selectedTab } = state;
     switch (selectedTab) {
@@ -80,7 +85,9 @@ const SinglyLinkedList = () => {
       case 'add-last':
         return showForm(addLast, 'Add Last');
       case 'add':
-        return showForm(add, 'Add', true);
+        return showForm(add, 'Add', true, true);
+      case 'remove-first':
+        return showForm(removeFirst, 'Remove First', false);
       default:
         return (
           <div>Select an action to get started</div>
@@ -93,9 +100,13 @@ const SinglyLinkedList = () => {
     setState({ ...state, [name]: value });
   };
 
-  const showForm = (fn: () => void, label: string, showIndexInput = false): ReactNode => (
+  const showForm = (fn: () => void, label: string, showValueInput = true, showIndexInput = false): ReactNode => (
     <div className="form">
-      <TextInput type="number" name="value" value={state.value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
+      {
+        showValueInput ? (
+          <TextInput type="number" name="value" value={state.value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
+        ) : null
+      }
       {
         showIndexInput ? (
           <TextInput type="number" name="index" value={state.index} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
