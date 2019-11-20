@@ -90,7 +90,6 @@ const SinglyLinkedList = () => {
 
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
-    console.log(name, value, event.target);
     setState({ ...state, [name]: value });
   };
 
