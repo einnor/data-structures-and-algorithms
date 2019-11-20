@@ -35,7 +35,10 @@ const SinglyLinkedList = () => {
 
   const onSwitch = (value: string) => setSelectedTab(value);
 
-  const addFirst = () => {
+  const addFirst = (): void => {
+    if (!value) {
+      return;
+    }
     linkedList.addFirst(new Node({ value: parseInt(value, 10), next: null }));
     forceRerenders(rerenders + 1);
     setValue('');
@@ -60,7 +63,7 @@ const SinglyLinkedList = () => {
   const addFirstPanel = (): ReactNode => (
     <div className="form">
       <TextInput type="number" value={value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
-      <Button onClick={() => addFirst()} text="Add Node" />
+      <Button onClick={() => addFirst()} text="Add Node" type="primary" />
     </div>
   )
 
