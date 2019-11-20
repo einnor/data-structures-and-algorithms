@@ -77,6 +77,11 @@ const SinglyLinkedList = () => {
     resetState();
   }
 
+  const removeLast = (): void => {
+    linkedList.removeLast();
+    resetState();
+  }
+
   const switchContent = (): ReactNode => {
     const { selectedTab } = state;
     switch (selectedTab) {
@@ -88,6 +93,8 @@ const SinglyLinkedList = () => {
         return showForm(add, 'Add', true, true);
       case 'remove-first':
         return showForm(removeFirst, 'Remove First', false);
+      case 'remove-last':
+        return showForm(removeFirst, 'Remove Last', false);
       default:
         return (
           <div>Select an action to get started</div>
