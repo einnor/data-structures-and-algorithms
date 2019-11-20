@@ -27,38 +27,60 @@ linkedList.addFirst(node3);
 linkedList.addFirst(node2);
 linkedList.addFirst(node1);
 
+type State = {
+  value: string;
+  index: string;
+  selectedTab: string;
+};
+
 const SinglyLinkedList = () => {
 
-  const [selectedTab, setSelectedTab] = useState('');
-  const [value, setValue] = useState('');
-  const [rerenders, forceRerenders] = useState(0);
+  const [state, setState] = useState<State>({
+    value: '',
+    index: '',
+    selectedTab: '',
+  });
 
-  const onSwitch = (value: string) => setSelectedTab(value);
+  const onSwitch = (value: string) => setState({ ...state, selectedTab: value });
+
+  const resetState = () => setState({ ...state, value: '', index: '' });
 
   const addFirst = (): void => {
+    const { value } = state;
     if (!value) {
       return;
     }
     linkedList.addFirst(new Node({ value: parseInt(value, 10), next: null }));
-    forceRerenders(rerenders + 1);
-    setValue('');
+    resetState();
   }
 
   const addLast = (): void => {
+    const { value } = state;
     if (!value) {
       return;
     }
     linkedList.addLast(new Node({ value: parseInt(value, 10), next: null }));
-    forceRerenders(rerenders + 1);
-    setValue('');
+    resetState();
+  }
+
+  const add = (): void => {
+    const { value, index } = state;
+    if (!value || !index) {
+      return;
+    }
+    linkedList.add(new Node({ value: parseInt(value, 10), next: null }), parseInt(index, 10));
+    resetState();
   }
 
   const switchContent = (): ReactNode => {
+    const { selectedTab } = state;
     switch (selectedTab) {
       case 'add-first':
         return showForm(addFirst, 'Add First');
       case 'add-last':
         return showForm(addLast, 'Add Last');
+      case 'add':
+        return showForm(add, 'Add', true);
       default:
         return (
           <div>Select an action to get started</div>
@@ -67,13 +89,19 @@ const SinglyLinkedList = () => {
   };
 
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = event.target;
-    setValue(value);
+    const { name, value } = event.target;
+    console.log(name, value, event.target);
+    setState({ ...state, [name]: value });
   };
 
-  const showForm = (fn: () => void, label: string): ReactNode => (
+  const showForm = (fn: () => void, label: string, showIndexInput = false): ReactNode => (
     <div className="form">
-      <TextInput type="number" value={value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
+      <TextInput type="number" name="value" value={state.value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
+      {
+        showIndexInput ? (
+          <TextInput type="number" name="index" value={state.index} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
+        ) : null
+      }
       <Button onClick={fn} text={label} type="primary" />
     </div>
   );
