@@ -44,10 +44,21 @@ const SinglyLinkedList = () => {
     setValue('');
   }
 
+  const addLast = (): void => {
+    if (!value) {
+      return;
+    }
+    linkedList.addLast(new Node({ value: parseInt(value, 10), next: null }));
+    forceRerenders(rerenders + 1);
+    setValue('');
+  }
+
   const switchContent = (): ReactNode => {
     switch (selectedTab) {
       case 'add-first':
-        return addFirstPanel();
+        return showForm(addFirst, 'Add First');
+      case 'add-last':
+        return showForm(addLast, 'Add Last');
       default:
         return (
           <div>Select an action to get started</div>
@@ -60,12 +71,12 @@ const SinglyLinkedList = () => {
     setValue(value);
   };
 
-  const addFirstPanel = (): ReactNode => (
+  const showForm = (fn: () => void, label: string): ReactNode => (
     <div className="form">
       <TextInput type="number" value={value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
-      <Button onClick={() => addFirst()} text="Add Node" type="primary" />
+      <Button onClick={fn} text={label} type="primary" />
     </div>
-  )
+  );
 
   return (
     <AppLayout>
