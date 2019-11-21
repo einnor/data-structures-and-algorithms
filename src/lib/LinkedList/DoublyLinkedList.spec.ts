@@ -205,4 +205,17 @@ describe('Doubly Linked List', () => {
     expect(array[2]).toEqual(node3);
     expect(linkedList.find(4)).toBeUndefined();
   });
+
+  it('should reset to defaults', () => {
+    const linkedList: ILinkedList <number> = new DoublyLinkedList();
+    const node1: INode<number> = new Node({ value: 1, next: null, previous: null });
+    const node2: INode<number> = new Node({ value: 2, next: null, previous: null });
+
+    linkedList.addFirst(node1);
+    linkedList.addFirst(node2);
+    linkedList.reset();
+    expect(linkedList.head).toBeNull();
+    expect(linkedList.tail).toBeNull();
+    expect(linkedList.length).toBe(0);
+  });
 });
