@@ -153,6 +153,19 @@ class DoublyLinkedList <T> {
     return removedNode;
   }
 
+  find (value: T) : number | undefined {
+    if (this.length === 0 || this.head === null) {
+      return undefined;
+    }
+
+    const index = this.enumerable().findIndex((node) => node.value === value);
+    if (index < 0) {
+      return undefined;
+    }
+
+    return index;
+  }
+
   reset () : void {
     this.head = null;
     this.tail = null;
