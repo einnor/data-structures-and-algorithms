@@ -20,6 +20,21 @@ class DoublyLinkedList <T> {
     this.head = node;
     this.length = this.length + 1;
   }
+
+  addLast (node: INode <T>) : void {
+    if (this.length === 0 || this.head === null || this.tail === null) {
+      this.head = node;
+      this.tail = node;
+      this.length = 1;
+      return;
+    }
+
+    const currentLast = this.tail;
+    currentLast.next = node;
+    node.previous = currentLast;
+    this.tail = node;
+    this.length = this.length + 1;
+  }
 }
 
 export default DoublyLinkedList;
