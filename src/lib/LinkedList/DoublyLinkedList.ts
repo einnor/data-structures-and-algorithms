@@ -89,7 +89,42 @@ class DoublyLinkedList <T> {
     }
 
     this.head = removedNode.next;
+    if (removedNode.next) {
+      removedNode.next.previous = null;
+    }
     this.length = this.length - 1;
+    return removedNode;
+  }
+
+  removeLast () : INode <T> | IError {
+    if (this.length === 0 || this.head === null || this.tail === null) {
+      return { message: 'Invalid operation. Length of the linked list is 0' };
+    }
+
+    const removedNode: INode <T> = this.tail;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+      return removedNode;
+    }
+
+    let previous: INode <T>;
+    let current = this.head;
+
+    while (current.next !== null) {
+      previous = current;
+      current = current.next;
+
+      if (current.next === null) {
+        current.previous = null;
+        previous.next = null;
+        this.tail = previous;
+        this.length = this.length - 1;
+      }
+    }
+
     return removedNode;
   }
 }
