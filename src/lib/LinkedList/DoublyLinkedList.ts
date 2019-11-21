@@ -6,6 +6,44 @@ class DoublyLinkedList <T> {
   tail: INode <T> | null = null;
   length: number = 0;
 
+  add (node: INode <T>, index: number) : void | IError {
+    if (index > this.length || index < 0) {
+      return { message: 'Out of range error' };
+    }
+
+    if (index === 0) {
+      this.addFirst(node);
+      return;
+    }
+
+    if (index === this.length) {
+      this.addLast(node);
+      return;
+    }
+
+    if (this.head !== null) {
+      let idx: number = 1;
+      let current = this.head;
+      let previous: INode <T>;
+
+      while (current.next !== null) {
+        previous = current;
+        current = current.next;
+        if (idx === index) {
+          previous.next = node;
+          node.previous = previous;
+          node.next = current;
+          current.previous = node;
+          this.length = this.length + 1;
+          return;
+        }
+
+        idx = idx + 1;
+      }
+    }
+  }
+
+
   addFirst (node: INode <T>) : void {
     if (this.length === 0 || this.head === null) {
       this.head = node;
