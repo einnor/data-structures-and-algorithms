@@ -126,7 +126,6 @@ describe('Singly Linked List', () => {
 
     expect(linkedList.removeLast()).toEqual(node2);
     expect(linkedList.length).toBe(1);
-    console.log(linkedList.tail);
     expect(linkedList.tail).toEqual(node1);
 
     expect(linkedList.removeLast()).toEqual(node1);
@@ -179,6 +178,26 @@ describe('Singly Linked List', () => {
     expect(linkedList.find(1)).toEqual(new Node({ value: 1, next: node2 }));
     expect(linkedList.find(2)).toEqual(new Node({ value: 2, next: node3 }));
     expect(linkedList.find(3)).toEqual(node3);
+    expect(linkedList.find(4)).toBeUndefined();
+  });
+
+  it('should enumerate the linked list', () => {
+    const linkedList: ILinkedList <number> = new SinglyLinkedList();
+    expect(linkedList.enumerable().length).toBe(0);
+
+    const node1: INode<number> = new Node({ value: 1, next: null });
+    const node2: INode<number> = new Node({ value: 2, next: null });
+    const node3: INode<number> = new Node({ value: 3, next: null });
+
+    linkedList.addFirst(node3);
+    linkedList.addFirst(node2);
+    linkedList.addFirst(node1);
+
+    const array = linkedList.enumerable();
+    expect(array.length).toBe(3);
+    expect(array[0]).toEqual(new Node({ value: 1, next: node2 }));
+    expect(array[1]).toEqual(new Node({ value: 2, next: node3 }));
+    expect(array[2]).toEqual(node3);
     expect(linkedList.find(4)).toBeUndefined();
   });
 

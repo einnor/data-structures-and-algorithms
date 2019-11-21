@@ -12,6 +12,7 @@ type ILinkedList <T> = {
   removeFirst: () => INode <T> | IError;
   removeLast: () => INode <T> | IError;
   find: (value: T) => INode <T> | undefined;
+  enumerable: () => INode <T> [];
   reset: () => void;
 };
 
