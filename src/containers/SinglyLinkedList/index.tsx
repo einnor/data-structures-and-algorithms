@@ -31,6 +31,7 @@ type State = {
   value: string;
   index: string;
   selectedTab: string;
+  foundIndex: number | undefined;
 };
 
 const SinglyLinkedList = () => {
@@ -39,11 +40,12 @@ const SinglyLinkedList = () => {
     value: '',
     index: '',
     selectedTab: '',
+    foundIndex: undefined,
   });
 
   const onSwitch = (value: string) => setState({ ...state, selectedTab: value });
 
-  const resetState = () => setState({ ...state, value: '', index: '' });
+  const resetState = () => setState({ ...state, value: '', index: '', foundIndex: undefined });
 
   const addFirst = (): void => {
     const { value } = state;
@@ -92,6 +94,16 @@ const SinglyLinkedList = () => {
     resetState();
   }
 
+  const find = (): void => {
+    const { value } = state;
+    if (!value) {
+      return;
+    }
+
+    const index = linkedList.find(parseInt(value));
+    setState({ ...state, foundIndex: index });
+  }
+
   const switchContent = (): ReactNode => {
     const { selectedTab } = state;
     switch (selectedTab) {
@@ -107,6 +119,8 @@ const SinglyLinkedList = () => {
         return showForm(removeLast, 'Remove Last', false);
       case 'remove':
         return showForm(remove, 'Remove', false, true);
+      case 'find':
+        return showForm(find, 'Find');
       default:
         return (
           <div>Select an action to get started</div>
@@ -134,6 +148,8 @@ const SinglyLinkedList = () => {
       <Button onClick={fn} text={label} type="primary" />
     </div>
   );
+
+  const { foundIndex } = state;
 
   return (
     <AppLayout>
