@@ -74,6 +74,41 @@ class DoublyLinkedList <T> {
     this.length = this.length + 1;
   }
 
+  remove (index: number) : INode <T> | IError {
+    if (index > this.length || index < 0 || this.head === null || this.tail === null) {
+      return { message: 'Out of range error' };
+    }
+
+    if (index === 0) {
+      return this.removeFirst();
+    }
+
+    if (index === this.length - 1) {
+      return this.removeLast();
+    }
+
+    let idx: number = 1;
+    let previous = null;
+    let current = this.head;
+
+    while (current.next !== null) {
+      previous = current;
+      current = current.next;
+      if (idx === index) {
+        previous.next = current.next;
+        if (current.next) {
+          current.next.previous = previous;
+        }
+        this.length = this.length - 1;
+        return current;
+      }
+
+      idx = idx + 1;
+    }
+
+    return current;
+  }
+
   removeFirst () : INode <T> | IError {
     if (this.length === 0 || this.head === null) {
       return { message: 'Invalid operation. Length of the linked list is 0' };
