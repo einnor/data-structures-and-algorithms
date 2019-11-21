@@ -158,6 +158,22 @@ class DoublyLinkedList <T> {
     this.tail = null;
     this.length = 0;
   }
+
+  enumerable () : INode<T> [] {
+    let current = this.head;
+    let nodeChain: INode<T>[] = [];
+
+    if (!current) {
+      return nodeChain;
+    }
+
+    while(current !== null) {
+      nodeChain.push(current);
+      current = current.next;
+    }
+
+    return nodeChain;
+  }
 }
 
 export default DoublyLinkedList;
