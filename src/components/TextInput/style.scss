@@ -40,7 +40,7 @@
     letter-spacing: 0.5px;
   }
 
-  .text-input:focus ~ .label {
+  .text-input:focus ~ .label, .text-input:valid ~ .label {
     top: -16px;
     font-size: 12px;
     color: $accent-color;
