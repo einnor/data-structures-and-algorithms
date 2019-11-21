@@ -152,27 +152,17 @@ class SinglyLinkedList <T> {
     return removedNode;
   }
 
-  find (value: T) : INode <T> | undefined {
+  find (value: T) : number | undefined {
     if (this.length === 0 || this.head === null) {
       return undefined;
     }
 
-    let current = this.head;
-    let idx = 0;
-
-    while (idx < this.length) {
-      if (current.value === value) {
-        return current;
-      }
-
-      if (!current.next) {
-        return undefined;
-      }
-
-      current = current.next;
+    const index = this.enumerable().findIndex((node) => node.value === value);
+    if (index < 0) {
+      return undefined;
     }
 
-    return undefined;
+    return index;
   }
 
   reset () : void {

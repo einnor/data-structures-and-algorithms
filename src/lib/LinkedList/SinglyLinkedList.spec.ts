@@ -175,9 +175,9 @@ describe('Singly Linked List', () => {
     linkedList.addFirst(node2);
     linkedList.addFirst(node1);
     expect(linkedList.length).toBe(3);
-    expect(linkedList.find(1)).toEqual(new Node({ value: 1, next: node2 }));
-    expect(linkedList.find(2)).toEqual(new Node({ value: 2, next: node3 }));
-    expect(linkedList.find(3)).toEqual(node3);
+    expect(linkedList.find(1)).toEqual(0);
+    expect(linkedList.find(2)).toEqual(1);
+    expect(linkedList.find(3)).toEqual(2);
     expect(linkedList.find(4)).toBeUndefined();
   });
 
