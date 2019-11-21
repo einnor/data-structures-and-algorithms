@@ -73,6 +73,25 @@ class DoublyLinkedList <T> {
     this.tail = node;
     this.length = this.length + 1;
   }
+
+  removeFirst () : INode <T> | IError {
+    if (this.length === 0 || this.head === null) {
+      return { message: 'Invalid operation. Length of the linked list is 0' };
+    }
+
+    const removedNode: INode <T> = this.head;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+      this.length = 0;
+      return removedNode;
+    }
+
+    this.head = removedNode.next;
+    this.length = this.length - 1;
+    return removedNode;
+  }
 }
 
 export default DoublyLinkedList;
