@@ -123,7 +123,10 @@ const SinglyLinkedList = () => {
         return showForm(find, 'Find');
       default:
         return (
-          <div>Select an action to get started</div>
+          <>
+            <h2 style={{ marginBottom: 20 }}>Singly Linked Lists</h2>
+            <div>Select an action to get started</div>
+          </>
         );
     }
   };

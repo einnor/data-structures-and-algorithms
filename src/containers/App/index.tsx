@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom';
 
 import Home from '../Home';
 import SinglyLinkedList from '../SinglyLinkedList';
+import DoublyLinkedList from '../DoublyLinkedList';
 
 import '../../styles/base.scss';
 
@@ -11,6 +12,7 @@ const App = () => {
     <>
       <Route path="/" exact component={Home} />
       <Route path="/linked-lists/singly" exact component={SinglyLinkedList} />
+      <Route path="/linked-lists/doubly" exact component={DoublyLinkedList} />
     </>
   );
 };
