@@ -185,4 +185,24 @@ describe('Doubly Linked List', () => {
     expect(linkedList.find(3)).toEqual(2);
     expect(linkedList.find(4)).toBeUndefined();
   });
+
+  it('should enumerate the linked list', () => {
+    const linkedList: ILinkedList <number> = new DoublyLinkedList();
+    expect(linkedList.enumerable().length).toBe(0);
+
+    const node1: INode<number> = new Node({ value: 1, next: null, previous: null });
+    const node2: INode<number> = new Node({ value: 2, next: null, previous: null });
+    const node3: INode<number> = new Node({ value: 3, next: null, previous: null });
+
+    linkedList.addFirst(node3);
+    linkedList.addFirst(node2);
+    linkedList.addFirst(node1);
+
+    const array = linkedList.enumerable();
+    expect(array.length).toBe(3);
+    expect(array[0]).toEqual(node1);
+    expect(array[1]).toEqual(node2);
+    expect(array[2]).toEqual(node3);
+    expect(linkedList.find(4)).toBeUndefined();
+  });
 });
