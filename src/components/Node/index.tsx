@@ -13,9 +13,18 @@ type Props = {
 };
 
 const Node = ({ node, foundIndex, index }: Props) => {
+  const isDouble = node.previous !== undefined;
+
   return (
     <>
-      <div className={`node ${foundIndex === index ? 'selected-higlight' : ''}`}>
+      <div className={`node ${foundIndex === index ? 'selected-higlight' : ''} ${isDouble ? 'node--big-node' : ''}`}>
+        {
+          isDouble ? (
+            <div className="previous">
+              <span></span>
+            </div>
+          ) : null
+        }
         <div className="value">{ node.value }</div>
         <div className="next">
           <span></span>
@@ -24,7 +33,14 @@ const Node = ({ node, foundIndex, index }: Props) => {
       {
         node.next ? (
           <>
-            <img className="link" src={longArrowRight} alt="Long arrow right" />
+            <div className="links">
+              <img className="link" src={longArrowRight} alt="Long arrow right" />
+              {
+                isDouble ? (
+                  <img className="link rotate180" src={longArrowRight} alt="Long arrow left" />
+                ) : null
+              }
+            </div>
             <NodeChain node={node.next} index={index + 1} foundIndex={foundIndex} />
           </>
         ) : null
