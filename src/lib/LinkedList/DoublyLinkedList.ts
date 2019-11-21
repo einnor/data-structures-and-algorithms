@@ -43,7 +43,6 @@ class DoublyLinkedList <T> {
     }
   }
 
-
   addFirst (node: INode <T>) : void {
     if (this.length === 0 || this.head === null) {
       this.head = node;
@@ -145,19 +144,10 @@ class DoublyLinkedList <T> {
       return removedNode;
     }
 
-    let previous: INode <T>;
-    let current = this.head;
-
-    while (current.next !== null) {
-      previous = current;
-      current = current.next;
-
-      if (current.next === null) {
-        current.previous = null;
-        previous.next = null;
-        this.tail = previous;
-        this.length = this.length - 1;
-      }
+    if (removedNode.previous) {
+      this.tail = removedNode.previous;
+      this.tail.next = null;
+      this.length = this.length - 1;
     }
 
     return removedNode;
