@@ -110,4 +110,31 @@ describe('Doubly Linked List', () => {
     expect(linkedList.length).toBe(0);
     expect(linkedList.head).toBeNull();
   });
+
+  it('should remove last', () => {
+    const linkedList: ILinkedList <number> = new DoublyLinkedList();
+
+    expect(linkedList.removeFirst()).toEqual({ message: 'Invalid operation. Length of the linked list is 0' });
+
+    const node1: INode<number> = new Node({ value: 1, next: null, previous: null });
+    const node2: INode<number> = new Node({ value: 2, next: null, previous: null });
+    const node3: INode<number> = new Node({ value: 3, next: null, previous: null });
+    linkedList.addFirst(node3);
+    linkedList.addFirst(node2);
+    linkedList.addFirst(node1);
+    expect(linkedList.length).toBe(3);
+    expect(linkedList.tail).toEqual(node3);
+
+    expect(linkedList.removeLast()).toEqual(node3);
+    expect(linkedList.length).toBe(2);
+    expect(linkedList.tail).toEqual(node2);
+
+    expect(linkedList.removeLast()).toEqual(node2);
+    expect(linkedList.length).toBe(1);
+    expect(linkedList.tail).toEqual(node1);
+
+    expect(linkedList.removeLast()).toEqual(node1);
+    expect(linkedList.length).toBe(0);
+    expect(linkedList.tail).toBeNull();
+  });
 });
