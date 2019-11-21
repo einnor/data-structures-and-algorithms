@@ -159,7 +159,7 @@ const SinglyLinkedList = () => {
         {
           linkedList.head ? (
             <div className="node-chain">
-              <NodeChain node={linkedList.head} />
+              <NodeChain index={0} node={linkedList.head} foundIndex={foundIndex} />
             </div>
           ) : null
         }

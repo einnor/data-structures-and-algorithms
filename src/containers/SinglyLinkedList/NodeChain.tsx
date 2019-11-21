@@ -4,12 +4,14 @@ import Node from './Node'
 import { INode } from '../../lib/LinkedList/@types';
 
 type Props = {
-  node: INode <number>
+  node: INode <number>;
+  foundIndex: number | undefined;
+  index: number;
 };
 
-const NodeChain = ({ node }: Props) => {
+const NodeChain = ({ node, index, foundIndex }: Props) => {
   return (
-    <Node node={node} />
+    <Node node={node} index={index} foundIndex={foundIndex} />
   );
 };
 
