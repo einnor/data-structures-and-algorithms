@@ -1,8 +1,10 @@
 import React from 'react';
 
-import NodeChain from './NodeChain';
+import NodeChain from '../NodeChain';
 import { INode } from '../../lib/LinkedList/@types';
 import longArrowRight from '../../assets/images/arrow-long-right.png';
+
+import './style.scss';
 
 type Props = {
   node: INode <number>;

@@ -1,7 +1,7 @@
 import React, { useState, ReactNode, ChangeEvent } from 'react';
 
 import { AppLayout, Tabs, TabPanel, TextInput, Button } from '../../components';
-import NodeChain from './NodeChain';
+import NodeChain from '../../components/NodeChain';
 import { default as LinkedList } from '../../lib/LinkedList/SinglyLinkedList';
 import Node from '../../lib/LinkedList/Node';
 import { ILinkedList, INode } from '../../lib/LinkedList/@types';

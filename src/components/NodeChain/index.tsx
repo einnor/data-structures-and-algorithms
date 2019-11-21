@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Node from './Node'
+import Node from '../Node'
 import { INode } from '../../lib/LinkedList/@types';
 
 type Props = {
