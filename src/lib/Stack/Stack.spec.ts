@@ -36,5 +36,21 @@ describe('Stack', () => {
     const item2: IItem <number> = new Item({ value: 2 });
     stack.push(item2);
     expect(stack.peek()).toEqual(item2);
-  })
+  });
+
+  it('should pop', () => {
+    const stack: IStack <number> = new Stack();
+    const item1: IItem <number> = new Item({ value: 1 });
+    const item2: IItem <number> = new Item({ value: 2 });
+    const item3: IItem <number> = new Item({ value: 3 });
+
+    stack.push(item1);
+    stack.push(item2);
+    stack.push(item3);
+
+    expect(stack.pop()).toEqual(item3);
+    expect(stack.pop()).toEqual(item2);
+    expect(stack.pop()).toEqual(item1);
+    expect(stack.pop()).toBeUndefined();
+  });
 });
