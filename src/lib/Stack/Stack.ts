@@ -37,6 +37,10 @@ class Stack <T> {
     this.length = 0;
     this._store = [];
   }
+
+  enumerable () : IItem <T> [] {
+    return this._store;
+  }
 }
 
 export default Stack;
