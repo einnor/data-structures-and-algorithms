@@ -24,7 +24,18 @@ class Stack <T> {
   }
 
   pop () : IItem <T> | undefined {
-    return this._store.pop();
+
+    const item = this._store.pop();
+    if (item) {
+      this.length = this.length - 1;
+    }
+
+    return item;
+  }
+
+  clear () : void {
+    this.length = 0;
+    this._store = [];
   }
 }
 
