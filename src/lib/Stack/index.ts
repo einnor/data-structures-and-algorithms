@@ -14,6 +14,14 @@ class Stack <T> {
     this._store.push(item);
     this.length = this.length + 1;
   }
+
+  peek () : IItem <T> | undefined {
+    if (this.length === 0) {
+      return undefined;
+    }
+
+    return this._store[this.length - 1];
+  }
 }
 
 export default Stack;
