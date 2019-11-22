@@ -22,6 +22,10 @@ class Stack <T> {
 
     return this._store[this.length - 1];
   }
+
+  pop () : IItem <T> | undefined {
+    return this._store.pop();
+  }
 }
 
 export default Stack;
