@@ -1,5 +1,5 @@
 type IItem <T> = {
-  value: T;
+  value: T | null;
 };
 
 export default IItem;
