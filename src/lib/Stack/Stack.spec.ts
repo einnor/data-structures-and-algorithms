@@ -53,4 +53,18 @@ describe('Stack', () => {
     expect(stack.pop()).toEqual(item1);
     expect(stack.pop()).toBeUndefined();
   });
+
+  it('should enumerate', () => {
+    const stack: IStack <number> = new Stack();
+    const item1: IItem <number> = new Item({ value: 1 });
+    const item2: IItem <number> = new Item({ value: 2 });
+    const item3: IItem <number> = new Item({ value: 3 });
+
+    stack.push(item1);
+    stack.push(item2);
+    stack.push(item3);
+
+    expect(stack.enumerable().length).toBe(3);
+    expect(stack.enumerable()).toEqual([item1, item2, item3]);
+  });
 });
