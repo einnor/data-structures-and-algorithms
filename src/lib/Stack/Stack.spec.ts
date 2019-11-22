@@ -23,4 +23,18 @@ describe('Stack', () => {
     expect(stack.length).toBe(2);
     expect(stack.enumerable()[1]).toEqual(item2);
   });
+
+  it('should peek', () => {
+    const stack: IStack <number> = new Stack();
+
+    expect(stack.peek()).toBeUndefined();
+
+    const item1: IItem <number> = new Item({ value: 1 });
+    stack.push(item1);
+    expect(stack.peek()).toEqual(item1);
+
+    const item2: IItem <number> = new Item({ value: 2 });
+    stack.push(item2);
+    expect(stack.peek()).toEqual(item2);
+  })
 });
