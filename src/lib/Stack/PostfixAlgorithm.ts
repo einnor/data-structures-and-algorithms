@@ -3,15 +3,14 @@ import { IStack } from './@types';
 import { IError } from '../../@types';
 
 const postfixAlgorithm = (input: string): number | IError | undefined => {
-  const cleanedInput = cleanInput(input);
-  if (!isValid(cleanedInput)) {
+  if (!isValid(input)) {
     return { message: 'Invalid input' };
   }
 
   const stack: IStack <number> = new Stack();
   let result: number | undefined;
 
-  cleanedInput.split('').map((token) => {
+  input.split(' ').map((token) => {
     if (isNumber(token)) {
       stack.push({ value: Number(token) });
     } else {
@@ -29,17 +28,13 @@ const postfixAlgorithm = (input: string): number | IError | undefined => {
   return result;
 };
 
-const cleanInput = (input: string): string => {
-  return input.replace(' ', '');
-};
-
 const isValid = (input: string): boolean => {
-  const cleanInput = input.replace(' ', '');
-  if (cleanInput.length === 0) {
+  if (input.replace(/ /g, '').length === 0) {
     return false;
   }
 
-  const array = cleanInput.split('');
+  const array = input.trim().split(' ');
+
   for (const character of array) {
     if (!isNumber(character) && !isOperator(character)) {
       return false;
