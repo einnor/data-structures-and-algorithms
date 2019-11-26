@@ -1,10 +1,11 @@
 import Stack from './Stack';
 import { IStack } from './@types';
+import { IError } from '../../@types';
 
-const postfixAlgorithm = (input: string): number | void => {
+const postfixAlgorithm = (input: string): number | IError | undefined => {
   const cleanedInput = cleanInput(input);
   if (!isValid(cleanedInput)) {
-    return;
+    return { message: 'Invalid input' };
   }
 
   const stack: IStack <number> = new Stack();
@@ -24,6 +25,8 @@ const postfixAlgorithm = (input: string): number | void => {
       }
     }
   });
+
+  return result;
 };
 
 const cleanInput = (input: string): string => {
@@ -36,11 +39,13 @@ const isValid = (input: string): boolean => {
     return false;
   }
 
-  cleanInput.split('').forEach((character) => {
+  const array = cleanInput.split('');
+  for (const character of array) {
     if (!isNumber(character) && !isOperator(character)) {
+      console.log(character);
       return false;
     }
-  });
+  }
 
   return true;
 };
