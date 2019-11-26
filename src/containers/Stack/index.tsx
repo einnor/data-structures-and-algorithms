@@ -102,10 +102,20 @@ const StackImplementation = () => {
     <div className="form">
       {
         showValueInput ? (
-          <TextInput type="number" name="value" value={state.value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
+          <TextInput type={state.selectedTab === 'postfix-algorithm' ? 'text' : 'number'} name="value" value={state.value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
         ) : null
       }
       <Button onClick={fn} text={label} type="primary" />
+      {
+        state.returnedValue ? (
+        <div className="output">{JSON.stringify(state.returnedValue)}</div>
+        ) : null
+      }
+      {
+        state.pfaValue ? (
+        <div className="output">{JSON.stringify(state.pfaValue)}</div>
+        ) : null
+      }
     </div>
   );
 
@@ -114,6 +124,15 @@ const StackImplementation = () => {
       <>
         <Tabs tabs={tabs} onSwitch={onSwitch} />
         <TabPanel content={switchContent()} />
+        <div className="stack-container">
+          <div className="stack">
+            {
+              stack.enumerable().map((item, index) => (
+                <div className="item" style={{ backgroundColor: `rgba(220, 0, 78, ${(stack.length - index) / stack.length})` }}>{item.value}</div>
+              ))
+            }
+          </div>
+        </div>
       </>
     </AppLayout>
   )
