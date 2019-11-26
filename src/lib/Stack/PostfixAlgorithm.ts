@@ -42,7 +42,6 @@ const isValid = (input: string): boolean => {
   const array = cleanInput.split('');
   for (const character of array) {
     if (!isNumber(character) && !isOperator(character)) {
-      console.log(character);
       return false;
     }
   }
