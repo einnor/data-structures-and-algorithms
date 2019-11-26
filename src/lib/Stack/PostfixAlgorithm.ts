@@ -2,20 +2,47 @@ import Stack from './Stack';
 import { IStack } from './@types';
 
 const postfixAlgorithm = (input: string): number | void => {
-  if (!isValid(input)) {
+  const cleanedInput = cleanInput(input);
+  if (!isValid(cleanedInput)) {
     return;
   }
 
-  // input.split(/[\s,]+/)
   const stack: IStack <number> = new Stack();
+  let result: number | undefined;
+
+  cleanedInput.split('').map((token) => {
+    if (isNumber(token)) {
+      stack.push({ value: Number(token) });
+    } else {
+      const rightSide = stack.pop();
+      const leftSide = stack.pop();
+      if (rightSide && leftSide && rightSide.value && leftSide.value) {
+        result = compute(leftSide.value, symbolToOperator(token), rightSide.value);
+        if (result !== undefined) {
+          stack.push({ value: result });
+        }
+      }
+    }
+  });
+};
+
+const cleanInput = (input: string): string => {
+  return input.replace(' ', '');
 };
 
 const isValid = (input: string): boolean => {
-  if (input.length === 0) {
+  const cleanInput = input.replace(' ', '');
+  if (cleanInput.length === 0) {
     return false;
   }
 
-  return false;
+  cleanInput.split('').forEach((character) => {
+    if (!isNumber(character) && !isOperator(character)) {
+      return false;
+    }
+  });
+
+  return true;
 };
 
 const isOperator = (value: string): boolean => {
@@ -31,27 +58,37 @@ const isOperator = (value: string): boolean => {
   }
 }
 
-const symbolToOperator = (symbol: string) => {
+const isNumber = (value: any): boolean => {
+  return !isNaN(value);
+}
+
+const symbolToOperator = (symbol: string): ((a: number, b: number) => number) | undefined => {
   switch (symbol) {
       case '+': return plus;
       case '-': return minus;
       case '*': return multiply;
       case '/': return divide;
       case '%': return modulo;
+      default: return undefined;
   }
 }
 
-const compute = (a: number, operator: (a: number, b: number) => number, b: string) =>
-  operator(a, b);
+const compute = (a: number, operator: ((a: number, b: number) => number) | undefined, b: number) => {
+  if (operator === undefined) {
+    return;
+  }
 
-  const plus = (a: number, b: number) => a + b;
+  return operator(a, b);
+}
 
-  const minus = (a: number, b: number) => a - b;
+  const plus = (a: number, b: number): number => a + b;
 
-  const multiply = (a: number, b: number) => a * b;
+  const minus = (a: number, b: number): number => a - b;
 
-  const divide = (a: number, b: number) => a / b;
+  const multiply = (a: number, b: number): number => a * b;
 
-  const modulo = (a: number, b: number) => a % b;
+  const divide = (a: number, b: number): number => a / b;
+
+  const modulo = (a: number, b: number): number => a % b;
 
 export default postfixAlgorithm;
