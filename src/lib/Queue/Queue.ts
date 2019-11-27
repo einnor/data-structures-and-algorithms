@@ -20,6 +20,10 @@ class Queue <T> {
     const item = this._store.pop();
     return item;
   }
+
+  clear () : void {
+    this._store = [];
+  }
 }
 
 export default Queue;
