@@ -1,5 +1,4 @@
 import { IItem, IQueue } from './@types';
-import { IError } from '../../@types';
 
 class Queue <T> implements IQueue <T> {
   length: number = 0;
