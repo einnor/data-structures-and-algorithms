@@ -20,7 +20,9 @@ class Queue <T> implements IQueue <T> {
   }
 
   dequeue () : IItem <T> | undefined {
-    const item = this._store.pop();
+
+    const item = this._store.shift();
+
     if (item) {
       this.length = this.length - 1;
     }

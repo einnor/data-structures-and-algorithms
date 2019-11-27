@@ -38,7 +38,26 @@ describe('Queue', () => {
     expect(queue.peek()).toEqual(item2);
   });
 
-  it('should dequeue', () => {
+  // it('should dequeue', () => {
+  //   const queue: IQueue <number> = new Queue();
+  //   const item1: IItem <number> = new Item({ value: 1 });
+  //   const item2: IItem <number> = new Item({ value: 2 });
+  //   const item3: IItem <number> = new Item({ value: 3 });
+
+  //   queue.enqueue(item1);
+  //   queue.enqueue(item2);
+  //   queue.enqueue(item3);
+
+  //   expect(queue.dequeue()).toEqual(item3);
+  //   expect(queue.length).toBe(2);
+  //   expect(queue.dequeue()).toEqual(item2);
+  //   expect(queue.length).toBe(1);
+  //   expect(queue.dequeue()).toEqual(item1);
+  //   expect(queue.length).toBe(0);
+  //   expect(queue.dequeue()).toBeUndefined();
+  // });
+
+  it('should enumerate', () => {
     const queue: IQueue <number> = new Queue();
     const item1: IItem <number> = new Item({ value: 1 });
     const item2: IItem <number> = new Item({ value: 2 });
@@ -48,12 +67,11 @@ describe('Queue', () => {
     queue.enqueue(item2);
     queue.enqueue(item3);
 
-    expect(queue.dequeue()).toEqual(item3);
-    expect(queue.length).toBe(2);
-    expect(queue.dequeue()).toEqual(item2);
-    expect(queue.length).toBe(1);
-    expect(queue.dequeue()).toEqual(item1);
-    expect(queue.length).toBe(0);
-    expect(queue.dequeue()).toBeUndefined();
+    expect(queue.enumerable().length).toBe(3);
+    expect(queue.enumerable()).toEqual([item1, item2, item3]);
+
+    queue.dequeue();
+    expect(queue.enumerable().length).toBe(2);
+    expect(queue.enumerable()).toEqual([item2, item3]);
   });
 });
