@@ -2,10 +2,13 @@ import { IItem, IQueue } from './@types';
 import { IError } from '../../@types';
 
 class Queue <T> implements IQueue <T> {
+  length: number = 0;
+
   _store: IItem <T> [] = [];
 
   enqueue (item: IItem <T>) : void {
     this._store.push(item);
+    this.length = this.length + 1;
   }
 
   peek () : IItem <T> | undefined {
@@ -18,6 +21,10 @@ class Queue <T> implements IQueue <T> {
 
   dequeue () : IItem <T> | undefined {
     const item = this._store.pop();
+    if (item) {
+      this.length = this.length - 1;
+    }
+
     return item;
   }
 
