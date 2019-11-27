@@ -9,3 +9,5 @@ class Item <T> {
     this.priority = priority;
   }
 }
+
+export default Item;
