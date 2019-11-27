@@ -7,6 +7,14 @@ class Queue <T> {
   enqueue (item: IItem <T>) : void {
     this._store.push(item);
   }
+
+  peek () : IItem <T> | undefined {
+    if (this._store.length === 0) {
+      return undefined;
+    }
+
+    return this._store[this._store.length - 1];
+  }
 }
 
 export default Queue;
