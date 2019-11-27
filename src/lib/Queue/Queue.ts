@@ -15,6 +15,11 @@ class Queue <T> {
 
     return this._store[this._store.length - 1];
   }
+
+  dequeue () : IItem <T> | undefined {
+    const item = this._store.pop();
+    return item;
+  }
 }
 
 export default Queue;
