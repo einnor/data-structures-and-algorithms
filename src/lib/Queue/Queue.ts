@@ -32,6 +32,7 @@ class Queue <T> implements IQueue <T> {
 
   clear () : void {
     this._store = [];
+    this.length = 0;
   }
 
   enumerable () : IItem <T> [] {
