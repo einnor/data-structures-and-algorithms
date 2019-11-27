@@ -1,7 +1,7 @@
-import { IItem } from './@types';
+import { IItem, IQueue } from './@types';
 import { IError } from '../../@types';
 
-class Queue <T> {
+class Queue <T> implements IQueue <T> {
   _store: IItem <T> [] = [];
 
   enqueue (item: IItem <T>) : void {
@@ -23,6 +23,10 @@ class Queue <T> {
 
   clear () : void {
     this._store = [];
+  }
+
+  enumerable () : IItem <T> [] {
+    return this._store;
   }
 }
 
