@@ -1,7 +1,7 @@
 import React, { useState, ReactNode, ChangeEvent } from 'react';
 
 import { AppLayout, Tabs, TabPanel, TextInput, Button } from '../../components';
-import Queue from '../../lib/Queue/Queue';
+import PriorityQueue from '../../lib/Queue/PriorityQueue';
 import { IQueue, IItem } from '../../lib/Queue/@types';
 import { ITab } from '../../@types';
 
@@ -14,35 +14,37 @@ const tabs: ITab[] = [
   { text: 'Clear', value: 'clear' },
 ];
 
-const queue: IQueue <number> = new Queue();
-queue.enqueue({ value: 1 });
-queue.enqueue({ value: 2 });
-queue.enqueue({ value: 3 });
+const queue: IQueue <number> = new PriorityQueue();
+queue.enqueue({ value: 1, priority: 1 });
+queue.enqueue({ value: 2, priority: 2 });
+queue.enqueue({ value: 3, priority: 3 });
 
 type State = {
   value: string;
+  priority: string;
   selectedTab: string;
   returnedValue: IItem <number> | undefined;
 };
 
-const QueueImplementation = () => {
+const PriorityQueueImplementation = () => {
 
   const [state, setState] = useState<State>({
     value: '',
+    priority: '',
     selectedTab: '',
     returnedValue: undefined,
   });
 
-  const onSwitch = (value: string) => setState({ ...state, selectedTab: value, returnedValue: undefined, value: '' });
+  const onSwitch = (value: string) => setState({ ...state, selectedTab: value, returnedValue: undefined, value: '', priority: '' });
 
-  const resetState = () => setState({ ...state, value: '', returnedValue: undefined });
+  const resetState = () => setState({ ...state, value: '', priority: '', returnedValue: undefined });
 
   const enqueue = (): void => {
-    const { value } = state;
+    const { value, priority } = state;
     if (!value) {
       return;
     }
-    queue.enqueue({ value: parseInt(value, 10) });
+    queue.enqueue({ value: parseInt(value, 10), priority: parseInt(priority, 10) });
     resetState();
   }
 
@@ -65,7 +67,7 @@ const QueueImplementation = () => {
     const { selectedTab } = state;
     switch (selectedTab) {
       case 'enqueue':
-        return showForm(enqueue, 'Enqueue');
+        return showForm(enqueue, 'Enqueue', true, true);
       case 'peek':
         return showForm(peek, 'Peek', false);
       case 'dequeue':
@@ -75,7 +77,7 @@ const QueueImplementation = () => {
       default:
         return (
           <>
-            <h2 style={{ marginBottom: 20 }}>Simple Queues</h2>
+            <h2 style={{ marginBottom: 20 }}>Priority Queues</h2>
             <div>Select an action to get started</div>
           </>
         );
@@ -87,11 +89,16 @@ const QueueImplementation = () => {
     setState({ ...state, [name]: value });
   };
 
-  const showForm = (fn: () => void, label: string, showValueInput = true): ReactNode => (
+  const showForm = (fn: () => void, label: string, showValueInput = true, showPriorityInput = false): ReactNode => (
     <div className="form">
       {
         showValueInput ? (
           <TextInput type="number" name="value" value={state.value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
+        ) : null
+      }
+      {
+        showPriorityInput ? (
+          <TextInput type="number" name="priority" value={state.priority} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
         ) : null
       }
       <Button onClick={fn} text={label} type="primary" />
@@ -112,7 +119,10 @@ const QueueImplementation = () => {
           <div className="queue">
             {
               queue.enumerable().map((item, index) => (
-                <div className="item" style={{ backgroundColor: `rgba(220, 0, 78, ${(queue.length - index) / queue.length})` }}>{item.value}</div>
+                <div className="item" style={{ backgroundColor: `rgba(220, 0, 78, ${(queue.length - index) / queue.length})` }}>
+                  <span className="value">{item.value}</span>
+                  <span className="priority">{`{ p: ${item.priority} }`}</span>
+                </div>
               ))
             }
           </div>
@@ -122,4 +132,4 @@ const QueueImplementation = () => {
   )
 };
 
-export default QueueImplementation;
+export default PriorityQueueImplementation;

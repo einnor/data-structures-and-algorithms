@@ -6,6 +6,7 @@ import SinglyLinkedList from '../SinglyLinkedList';
 import DoublyLinkedList from '../DoublyLinkedList';
 import Stack from '../Stack';
 import Queue from '../Queue';
+import PriorityQueue from '../PriorityQueue';
 
 import '../../styles/base.scss';
 
@@ -17,6 +18,7 @@ const App = () => {
       <Route path="/linked-lists/doubly" exact component={DoublyLinkedList} />
       <Route path="/stacks" exact component={Stack} />
       <Route path="/queues/simple" exact component={Queue} />
+      <Route path="/queues/priority" exact component={PriorityQueue} />
     </>
   );
 };
