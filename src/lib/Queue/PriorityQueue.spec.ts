@@ -75,4 +75,20 @@ describe('Priority Queue', () => {
     expect(queue.enumerable().length).toBe(2);
     expect(queue.enumerable()).toEqual([item2, item1]);
   });
+
+  it('should clear', () => {
+    const queue: IQueue <number> = new PriorityQueue();
+    const item1: IItem <number> = new Item({ value: 1, priority: 1 });
+    const item2: IItem <number> = new Item({ value: 2, priority: 2 });
+    const item3: IItem <number> = new Item({ value: 3, priority: 3 });
+
+    queue.enqueue(item1);
+    queue.enqueue(item2);
+    queue.enqueue(item3);
+
+    queue.clear();
+
+    expect(queue.length).toBe(0);
+    expect(queue.enumerable()).toEqual([]);
+  });
 });
