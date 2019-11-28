@@ -10,7 +10,7 @@ const postfixAlgorithm = (input: string): number | IError | undefined => {
   const stack: IStack <number> = new Stack();
   let result: number | undefined;
 
-  input.split(' ').map((token) => {
+  input.split(' ').forEach((token) => {
     if (isNumber(token)) {
       stack.push({ value: Number(token) });
     } else {

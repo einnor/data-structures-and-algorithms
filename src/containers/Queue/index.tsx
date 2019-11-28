@@ -2,9 +2,8 @@ import React, { useState, ReactNode, ChangeEvent } from 'react';
 
 import { AppLayout, Tabs, TabPanel, TextInput, Button } from '../../components';
 import Queue from '../../lib/Queue/Queue';
-import postfixAlgorithm from '../../lib/Stack/PostfixAlgorithm';
 import { IQueue, IItem } from '../../lib/Queue/@types';
-import { ITab, IError } from '../../@types';
+import { ITab } from '../../@types';
 
 import './style.scss';
 

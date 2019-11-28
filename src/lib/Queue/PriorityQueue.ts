@@ -9,14 +9,14 @@ class PriorityQueue <T> extends Queue <T> {
       return;
     }
 
-    if (this._store[this.length - 1].priority >= item.priority) {
+    if (this._store[this.length - 1].priority! >= item.priority!) {
       this._store.push(item);
       this.length = this.length + 1;
       return;
     }
 
     for (let index = 0; index < this.length; index++) {
-      if (item.priority > this._store[index].priority) {
+      if (item.priority! > this._store[index].priority!) {
         this._store.splice(index, 0, item);
         this.length = this.length + 1;
         return;
