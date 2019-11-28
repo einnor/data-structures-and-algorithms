@@ -38,4 +38,23 @@ describe('Priority Queue', () => {
     queue.enqueue(item2);
     expect(queue.peek()).toEqual(item1);
   });
+
+  it('should dequeue', () => {
+    const queue: IQueue <number> = new PriorityQueue();
+    const item1: IItem <number> = new Item({ value: 1, priority: 1 });
+    const item2: IItem <number> = new Item({ value: 2, priority: 2 });
+    const item3: IItem <number> = new Item({ value: 3, priority: 3 });
+
+    queue.enqueue(item1);
+    queue.enqueue(item2);
+    queue.enqueue(item3);
+
+    expect(queue.dequeue()).toEqual(item3);
+    expect(queue.length).toBe(2);
+    expect(queue.dequeue()).toEqual(item2);
+    expect(queue.length).toBe(1);
+    expect(queue.dequeue()).toEqual(item1);
+    expect(queue.length).toBe(0);
+    expect(queue.dequeue()).toBeUndefined();
+  });
 });
