@@ -38,7 +38,16 @@ const menuList: IMenuItem[] = [
     text: 'Queues',
     path: '/queues',
     icon: faEllipsisH,
-    children: null
+    children: [
+      {
+        text: 'Simple',
+        path: '/queues/simple',
+      },
+      {
+        text: 'Priority',
+        path: '/queues/priority',
+      },
+    ],
   },
   {
     id: 'binary-trees',
