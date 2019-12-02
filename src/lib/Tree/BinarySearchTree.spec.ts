@@ -30,4 +30,31 @@ describe('Binary Search Tree', () => {
     expect(bst.root!.left!.value).toBe(2);
     expect(bst.root!.right!.value).toBe(6);
   });
+
+  it('should find nodes', () => {
+    const bst: IBinarySearchTree <number> = new BinarySearchTree();
+    const node1: INode <number> = new Node({ value: 4 });
+    const node2: INode <number> = new Node({ value: 2 });
+    const node3: INode <number> = new Node({ value: 1 });
+    const node4: INode <number> = new Node({ value: 3 });
+    const node5: INode <number> = new Node({ value: 6 });
+    const node6: INode <number> = new Node({ value: 5 });
+    const node7: INode <number> = new Node({ value: 7 });
+
+    bst.add(node1);
+    bst.add(node2);
+    bst.add(node3);
+    bst.add(node4);
+    bst.add(node5);
+    bst.add(node6);
+    bst.add(node7);
+
+    expect(bst.find(4)!.value).toEqual(4);
+    expect(bst.find(2)!.value).toEqual(2);
+    expect(bst.find(1)!.value).toEqual(1);
+    expect(bst.find(3)!.value).toEqual(3);
+    expect(bst.find(6)!.value).toEqual(6);
+    expect(bst.find(5)!.value).toEqual(5);
+    expect(bst.find(7)!.value).toEqual(7);
+  });
 });
