@@ -11,22 +11,22 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
       return;
     }
 
-    this.addNode(this.root, node);
+    this._add(this.root, node);
   };
 
-  addNode (parent: INode <T>, node: INode <T>) : void {
+  _add (parent: INode <T>, node: INode <T>) : void {
     if (parent.value > node.value) {
       if (parent.left === null) {
         parent.left = node;
         return;
       }
-      this.addNode(parent.left, node);
+      this._add(parent.left, node);
     } else {
       if (parent.right === null) {
         parent.right = node;
         return;
       }
-      this.addNode(parent.right, node);
+      this._add(parent.right, node);
     }
   }
 
@@ -35,10 +35,10 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
       return this.root;
     }
 
-    return this.findNode(this.root, value);
+    return this._find(this.root, value);
   };
 
-  findNode (current: INode <T>, value : T) : INode <T> | undefined {
+  _find (current: INode <T>, value : T) : INode <T> | undefined {
     if (current === null) {
       return undefined;
     }
@@ -48,15 +48,40 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     }
 
     if (current.value > value) {
-      return this.findNode(current.left, value);
+      return this._find(current.left, value);
     }
 
-    return this.findNode(current.right, value);
+    return this._find(current.right, value);
   }
 
-  // remove (value: T) : INode <T> | undefined {};
+  _findNodeWithParent (parent: INode <T> | undefined, current: INode <T>, value: T) : { node: INode <T> | undefined, parent: INode <T> | undefined } {
+    if (current === null) {
+      return { node: undefined, parent: undefined };
+    }
 
-  // findWithParent (value: T) : [INode <T> | undefined, INode <T> | undefined] {};
+    if (current.value === value) {
+      return { node: current, parent };
+    }
+
+    if (current.value > value) {
+      return this._findNodeWithParent(current, current.left, value);
+    }
+
+    return this._findNodeWithParent(current, current.right, value);
+  }
+
+  findWithParent (value: T) : { node: INode <T> | undefined, parent: INode <T> | undefined } {
+    if (this.root.value === value) {
+      return { node: this.root , parent: undefined };
+    }
+
+    return this._findNodeWithParent(undefined, this.root, value);
+  };
+
+  // remove (value: T) : INode <T> | undefined {
+
+  // };
+
   // traversePreOrder () : INode <T> [] {};
   // traverseInOrder () : INode <T> [] {};
   // traversePostOrder () : INode <T> [] {};
