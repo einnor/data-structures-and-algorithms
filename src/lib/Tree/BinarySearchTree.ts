@@ -5,8 +5,6 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
 
   root: INode <T> | null = null;
 
-  traversed: INode <T> [] = [];
-
   add (node: INode <T>) : void {
     if (this.root === null) {
       this.root = node;
@@ -59,7 +57,7 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     return this._find(current.right, value);
   }
 
-  _findNodeWithParent (parent: INode <T> | undefined, current: INode <T>, value: T) : { node: INode <T> | undefined, parent: INode <T> | undefined } {
+  _findWithParent (parent: INode <T> | undefined, current: INode <T>, value: T) : { node: INode <T> | undefined, parent: INode <T> | undefined } {
     if (current === null) {
       return { node: undefined, parent: undefined };
     }
@@ -69,10 +67,10 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     }
 
     if (current.value > value) {
-      return this._findNodeWithParent(current, current.left, value);
+      return this._findWithParent(current, current.left, value);
     }
 
-    return this._findNodeWithParent(current, current.right, value);
+    return this._findWithParent(current, current.right, value);
   }
 
   findWithParent (value: T) : { node: INode <T> | undefined, parent: INode <T> | undefined } {
@@ -80,7 +78,7 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
       return { node: this.root , parent: undefined };
     }
 
-    return this._findNodeWithParent(undefined, this.root, value);
+    return this._findWithParent(undefined, this.root, value);
   };
 
   remove (value: T) : INode <T> | undefined {
