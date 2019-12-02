@@ -78,9 +78,55 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     return this._findNodeWithParent(undefined, this.root, value);
   };
 
-  // remove (value: T) : INode <T> | undefined {
+  remove (value: T) : INode <T> | undefined {
+    const result = this.findWithParent(value);
 
-  // };
+    if (result.node === undefined) {
+      return undefined;
+    }
+
+    const removedNode = result.node;
+    const side = result.parent.left.value === result.node.value ? 'left' : 'right';
+
+    // Case 1
+    // Removed node is leaf node
+    if (removedNode.left === removedNode.right === null) {
+      return removedNode;
+    }
+
+    // Case 2
+    // Removed node has left child which has no right child
+    // Promote left child of removed node
+    if (removedNode.left && removedNode.left.right === null) {
+      result.parent[side] = removedNode.left;
+      removedNode.left.right = removedNode.right;
+      return removedNode;
+    }
+
+    // Case 3
+    // Removed node has right child which has no left child
+    // Right child of removed node replaces the removed node
+    if (removedNode.right && removedNode.right.left === null) {
+      result.parent[side] = removedNode.right;
+      return removedNode;
+    }
+
+    // Case 4
+    // Removed node has right child which has a left child
+    // Right child's left most child replaces the removed node
+    if (removedNode.right && removedNode.right.left) {
+      let rightChildsLeftMostChild = removedNode.right.left;
+      while (rightChildsLeftMostChild !== null) {
+        const parent = rightChildsLeftMostChild;
+        rightChildsLeftMostChild = rightChildsLeftMostChild.left;
+
+        if (rightChildsLeftMostChild === null) {
+          parent.left = null;
+        }
+      }
+      result.parent[side] = rightChildsLeftMostChild;
+    }
+  };
 
   // traversePreOrder () : INode <T> [] {};
   // traverseInOrder () : INode <T> [] {};
