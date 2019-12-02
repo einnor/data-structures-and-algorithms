@@ -5,9 +5,12 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
 
   root: INode <T> | null = null;
 
+  traversed: INode <T> [] = [];
+
   add (node: INode <T>) : void {
     if (this.root === null) {
       this.root = node;
+      this.nodeCount = 1;
       return;
     }
 
@@ -18,12 +21,14 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     if (parent.value > node.value) {
       if (parent.left === null) {
         parent.left = node;
+        this.nodeCount = this.nodeCount + 1;
         return;
       }
       this._add(parent.left, node);
     } else {
       if (parent.right === null) {
         parent.right = node;
+        this.nodeCount = this.nodeCount + 1;
         return;
       }
       this._add(parent.right, node);
@@ -91,6 +96,7 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     // Case 1
     // Removed node is leaf node
     if (removedNode.left === removedNode.right === null) {
+      this.nodeCount = this.nodeCount - 1;
       return removedNode;
     }
 
@@ -100,6 +106,7 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     if (removedNode.left && removedNode.left.right === null) {
       result.parent[side] = removedNode.left;
       removedNode.left.right = removedNode.right;
+      this.nodeCount = this.nodeCount - 1;
       return removedNode;
     }
 
@@ -108,6 +115,7 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     // Right child of removed node replaces the removed node
     if (removedNode.right && removedNode.right.left === null) {
       result.parent[side] = removedNode.right;
+      this.nodeCount = this.nodeCount - 1;
       return removedNode;
     }
 
@@ -125,10 +133,35 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
         }
       }
       result.parent[side] = rightChildsLeftMostChild;
+      this.nodeCount = this.nodeCount - 1;
+      return removedNode;
     }
   };
 
-  // traversePreOrder () : INode <T> [] {};
+  traverse (order: string) : INode <T> [] {
+    const result: INode <T> [] = [];
+    switch (order) {
+      case 'pre':
+        return this._preOrder(this.root, result);
+      default:
+        return [];
+    }
+  }
+
+  _preOrder (current: INode <T>, result: INode <T> []) : INode <T> [] {
+    if (current === null) {
+      return result;
+    }
+
+    // Process
+    result.push(current);
+
+    this._preOrder(current.left, result);
+    this._preOrder(current.right, result);
+
+    return result;
+  };
+
   // traverseInOrder () : INode <T> [] {};
   // traversePostOrder () : INode <T> [] {};
 }
