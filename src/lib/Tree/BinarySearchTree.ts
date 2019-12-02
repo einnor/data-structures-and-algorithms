@@ -116,6 +116,7 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     // Case 3
     // Removed node has right child which has no left child
     // Right child of removed node replaces the removed node
+    console.log(removedNode.right);
     if (removedNode.right && removedNode.right.left === null) {
       result.parent[side] = removedNode.right;
       this.nodeCount = this.nodeCount - 1;
