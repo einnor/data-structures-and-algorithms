@@ -143,6 +143,8 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     switch (order) {
       case 'pre':
         return this._preOrder(this.root, result);
+      case 'in':
+          return this._inOrder(this.root, result);
       default:
         return [];
     }
@@ -162,8 +164,20 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     return result;
   };
 
-  // traverseInOrder () : INode <T> [] {};
-  // traversePostOrder () : INode <T> [] {};
+  _inOrder (current: INode <T>, result: INode <T> []) : INode <T> [] {
+    if (current === null) {
+      return result;
+    }
+
+    this._inOrder(current.left, result);
+
+    // Process
+    result.push(current);
+
+    this._inOrder(current.right, result);
+
+    return result;
+  };
 }
 
 export default BinarySearchTree;

@@ -13,8 +13,8 @@ type IBinarySearchTree <T> = {
   _findWithParent: (value: T) => { node: INode <T> | undefined, parent: INode <T> | undefined };
   traverse: (order: 'pre' | 'in' | 'out') => INode <T> [];
   _preOrder: (current: INode <T>, result: INode <T> []) => INode <T> [];
-  _inOrder: () => INode <T> [];
-  _postOrder: () => INode <T> [];
+  _inOrder: (current: INode <T>, result: INode <T> []) => INode <T> [];
+  _postOrder: (current: INode <T>, result: INode <T> []) => INode <T> [];
 };
 
 export default IBinarySearchTree;
