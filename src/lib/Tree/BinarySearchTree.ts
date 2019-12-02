@@ -15,7 +15,19 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
   };
 
   addNode (parent: INode <T>, node: INode <T>) : void {
-
+    if (parent.value > node.value) {
+      if (parent.left === null) {
+        parent.left = node;
+        return;
+      }
+      this.addNode(parent.left, node);
+    } else {
+      if (parent.right === null) {
+        parent.right = node;
+        return;
+      }
+      this.addNode(parent.right, node);
+    }
   }
 
   // find (value: T) : INode <T> | undefined;
