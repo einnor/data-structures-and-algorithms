@@ -8,4 +8,9 @@ describe('Binary Search Tree Node', () => {
     expect(node).toHaveProperty('value');
     expect(node.value).toBe(1);
   });
+
+  it('should have a property of left', () => {
+    expect(node).toHaveProperty('left');
+    expect(node.left).toBeNull();
+  });
 });
