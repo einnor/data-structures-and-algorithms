@@ -1,7 +1,7 @@
 type INode <T> = {
-  value: T;
-  left: INode <T> | null;
-  right: INode <T> | null;
+  value: T | null;
+  left?: INode <T> | null;
+  right?: INode <T> | null;
 };
 
 export default INode;
