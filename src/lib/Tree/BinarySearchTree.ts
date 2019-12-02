@@ -30,7 +30,25 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     }
   }
 
-  // find (value: T) : INode <T> | undefined;
+  find (value: T) : INode <T> | undefined {
+    if (this.root.value === value) {
+      return this.root;
+    }
+
+    return this.findNode(this.root, value);
+  };
+
+  findNode (current: INode <T>, value : T) : INode <T> | undefined {
+    if (current === null) {
+      return undefined;
+    }
+
+    if (current.value === value) {
+      return current;
+    }
+
+    if
+  }
 
   // remove (value: T) : INode <T> | undefined {};
 

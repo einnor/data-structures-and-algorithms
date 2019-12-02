@@ -7,6 +7,7 @@ type IBinarySearchTree <T> = {
   addNode: (parent: INode <T>, node: INode <T>) => void;
   remove: (value: T) => INode <T> | undefined;
   find: (value: T) => INode <T> | undefined;
+  findNode: (current: INode <T>, value: T) => INode <T> | undefined;
   findWithParent: (value: T) => [INode <T> | undefined, INode <T> | undefined];
   traversePreOrder: () => INode <T> [];
   traverseInOrder: () => INode <T> [];
