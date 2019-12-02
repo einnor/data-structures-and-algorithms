@@ -57,24 +57,24 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     return this._find(current.right, value);
   }
 
-  _findWithParent (parent: INode <T> | undefined, current: INode <T>, value: T) : { node: INode <T> | undefined, parent: INode <T> | undefined } {
+  _findWithParent (parent: INode <T> | undefined, current: INode <T> | null, value: T) : { node: INode <T> | null, parent: INode <T> | undefined } {
     if (current === null) {
-      return { node: undefined, parent: undefined };
+      return { node: null, parent };
     }
 
     if (current.value === value) {
       return { node: current, parent };
     }
 
-    if (current.value > value) {
+    if (current.value !== null && current.value > value) {
       return this._findWithParent(current, current.left, value);
     }
 
     return this._findWithParent(current, current.right, value);
   }
 
-  findWithParent (value: T) : { node: INode <T> | undefined, parent: INode <T> | undefined } {
-    if (this.root.value === value) {
+  findWithParent (value: T) : { node: INode <T> | null, parent: INode <T> | undefined } {
+    if (this.root && this.root.value === value) {
       return { node: this.root , parent: undefined };
     }
 

@@ -57,4 +57,31 @@ describe('Binary Search Tree', () => {
     expect(bst.find(5)!.value).toEqual(5);
     expect(bst.find(7)!.value).toEqual(7);
   });
+
+  it('should find nodes with parent', () => {
+    const bst: IBinarySearchTree <number> = new BinarySearchTree();
+    const node1: INode <number> = new Node({ value: 4 });
+    const node2: INode <number> = new Node({ value: 2 });
+    const node3: INode <number> = new Node({ value: 1 });
+    const node4: INode <number> = new Node({ value: 3 });
+    const node5: INode <number> = new Node({ value: 6 });
+    const node6: INode <number> = new Node({ value: 5 });
+    const node7: INode <number> = new Node({ value: 7 });
+
+    bst.add(node1);
+    bst.add(node2);
+    bst.add(node3);
+    bst.add(node4);
+    bst.add(node5);
+    bst.add(node6);
+    bst.add(node7);
+
+    expect(bst.findWithParent(4).parent).toBeUndefined();
+    expect(bst.findWithParent(2)!.parent!.value).toEqual(4);
+    expect(bst.findWithParent(1)!.parent!.value).toEqual(2);
+    expect(bst.findWithParent(3)!.parent!.value).toEqual(2);
+    expect(bst.findWithParent(6)!.parent!.value).toEqual(4);
+    expect(bst.findWithParent(5)!.parent!.value).toEqual(6);
+    expect(bst.findWithParent(7)!.parent!.value).toEqual(6);
+  });
 });
