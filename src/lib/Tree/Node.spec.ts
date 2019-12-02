@@ -13,4 +13,9 @@ describe('Binary Search Tree Node', () => {
     expect(node).toHaveProperty('left');
     expect(node.left).toBeNull();
   });
+
+  it('should have a property of right', () => {
+    expect(node).toHaveProperty('right');
+    expect(node.right).toBeNull();
+  });
 });
