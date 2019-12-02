@@ -12,6 +12,10 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
       return;
     }
 
+    if (this.find(node.value!)) {
+      return;
+    }
+
     this._add(this.root, node);
   };
 
@@ -84,17 +88,18 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
   remove (value: T) : INode <T> | undefined {
     const result = this.findWithParent(value);
 
-    if (result.node === undefined) {
+    if (result.node === null) {
       return undefined;
     }
 
     const removedNode = result.node;
-    const side = result.parent.left.value === result.node.value ? 'left' : 'right';
+    const side = result.parent!.left!.value === result.node.value ? 'left' : 'right';
 
     // Case 1
     // Removed node is leaf node
-    if (removedNode.left === removedNode.right === null) {
+    if (removedNode.left === null && removedNode.right === null) {
       this.nodeCount = this.nodeCount - 1;
+      result.parent[side] = null;
       return removedNode;
     }
 
