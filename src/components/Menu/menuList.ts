@@ -50,9 +50,9 @@ const menuList: IMenuItem[] = [
     ],
   },
   {
-    id: 'binary-trees',
-    text: 'Binary Trees',
-    path: '/binary-trees',
+    id: 'binary-search-trees',
+    text: 'Binary Search Trees',
+    path: '/binary-search-trees',
     icon: faTree,
     children: null
   },
