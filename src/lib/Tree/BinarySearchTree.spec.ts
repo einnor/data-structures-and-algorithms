@@ -186,4 +186,25 @@ describe('Binary Search Tree', () => {
     expect(removedNode!.value).toBe(6);
     expect(bst.find(4)!.right!.value).toBe(7);
   });
+
+  it('should do pre-order traversal', () => {
+    const bst: IBinarySearchTree <number> = new BinarySearchTree();
+    const node1: INode <number> = new Node({ value: 4 });
+    const node2: INode <number> = new Node({ value: 2 });
+    const node3: INode <number> = new Node({ value: 1 });
+    const node4: INode <number> = new Node({ value: 3 });
+    const node5: INode <number> = new Node({ value: 6 });
+    const node6: INode <number> = new Node({ value: 5 });
+    const node7: INode <number> = new Node({ value: 7 });
+
+    bst.add(node1);
+    bst.add(node2);
+    bst.add(node3);
+    bst.add(node4);
+    bst.add(node5);
+    bst.add(node6);
+    bst.add(node7);
+
+    expect(bst.traverse('pre')).toEqual([4, 2, 1, 3, 6, 5, 7]);
+  });
 });

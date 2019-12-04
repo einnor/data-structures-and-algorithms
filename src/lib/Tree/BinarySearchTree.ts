@@ -163,7 +163,7 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     }
 
     // Process
-    result.push(current);
+    result.push(current.value);
 
     this._preOrder(current.left, result);
     this._preOrder(current.right, result);
