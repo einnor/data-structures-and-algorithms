@@ -99,7 +99,7 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     // Removed node is leaf node
     if (removedNode.left === null && removedNode.right === null) {
       this.nodeCount = this.nodeCount - 1;
-      result.parent[side] = null;
+      result.parent![side] = null;
       return removedNode;
     }
 
@@ -107,7 +107,7 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     // Removed node has no right child
     // Promote left child of removed node
     if (removedNode.right === null) {
-      result.parent[side] = removedNode.left;
+      result.parent![side] = removedNode.left;
       this.nodeCount = this.nodeCount - 1;
       return removedNode;
     }
@@ -115,9 +115,8 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     // Case 3
     // Removed node has right child which has no left child
     // Right child of removed node replaces the removed node
-    console.log(removedNode.right);
     if (removedNode.right && removedNode.right.left === null) {
-      result.parent[side] = removedNode.right;
+      result.parent![side] = removedNode.right;
       this.nodeCount = this.nodeCount - 1;
       return removedNode;
     }
@@ -126,16 +125,19 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     // Removed node has right child which has a left child
     // Right child's left most child replaces the removed node
     if (removedNode.right && removedNode.right.left) {
-      let rightChildsLeftMostChild = removedNode.right.left;
-      while (rightChildsLeftMostChild !== null) {
-        const parent = rightChildsLeftMostChild;
-        rightChildsLeftMostChild = rightChildsLeftMostChild.left;
-
-        if (rightChildsLeftMostChild === null) {
+      let parent = removedNode.right;
+      let leftMostChild = parent.left;
+      while (parent.left !== null) {
+        if (leftMostChild!.left === null) {
           parent.left = null;
+        } else {
+          parent = leftMostChild!;
+          leftMostChild = leftMostChild!.left;
         }
       }
-      result.parent[side] = rightChildsLeftMostChild;
+
+      leftMostChild!.right = removedNode.right;
+      result.parent![side] = leftMostChild;
       this.nodeCount = this.nodeCount - 1;
       return removedNode;
     }
