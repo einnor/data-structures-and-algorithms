@@ -93,7 +93,8 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     }
 
     const removedNode = result.node;
-    const side = result.parent!.left!.value === result.node.value ? 'left' : 'right';
+    console.log(result.parent!.left, result.node);
+    const side = result.parent && result.parent.left && result.parent.left.value === result.node.value ? 'left' : 'right';
 
     // Case 1
     // Removed node is leaf node

@@ -58,7 +58,8 @@ const BinarySearchTreeImplementation = () => {
     if (!value) {
       return;
     }
-    bst.add({ value: parseInt(value, 10) });
+    const node: INode <number> = new Node({ value: parseInt(value, 10) });
+    bst.add(node);
     resetState();
   }
 
@@ -86,7 +87,7 @@ const BinarySearchTreeImplementation = () => {
       return;
     }
     const node = bst.remove(parseInt(value, 10));
-    setState({ ...state, returnedValue: node });
+    setState({ ...state, value: '', returnedValue: node });
   }
 
   const onTraverse = (traversal: 'pre' | 'in' | 'post') => {
@@ -110,7 +111,7 @@ const BinarySearchTreeImplementation = () => {
       case 'findWithParent':
         return showForm(findWithParent, 'Find With Parent', false);
       case 'remove':
-        return showForm(remove, 'Remove', false);
+        return showForm(remove, 'Remove');
       case 'traverse':
         return showTraversePanel();
       default:
