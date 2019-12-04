@@ -20,29 +20,29 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
   };
 
   _add (parent: INode <T>, node: INode <T>) : void {
-    if (parent.value > node.value) {
+    if (parent.value! > node.value!) {
       if (parent.left === null) {
         parent.left = node;
         this.nodeCount = this.nodeCount + 1;
         return;
       }
-      this._add(parent.left, node);
+      this._add(parent.left!, node);
     } else {
       if (parent.right === null) {
         parent.right = node;
         this.nodeCount = this.nodeCount + 1;
         return;
       }
-      this._add(parent.right, node);
+      this._add(parent.right!, node);
     }
   }
 
   find (value: T) : INode <T> | undefined {
-    if (this.root.value === value) {
-      return this.root;
+    if (this.root!.value === value) {
+      return this.root!;
     }
 
-    return this._find(this.root, value);
+    return this._find(this.root!, value);
   };
 
   _find (current: INode <T>, value : T) : INode <T> | undefined {
@@ -54,11 +54,11 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
       return current;
     }
 
-    if (current.value > value) {
-      return this._find(current.left, value);
+    if (current.value! > value) {
+      return this._find(current.left!, value);
     }
 
-    return this._find(current.right, value);
+    return this._find(current.right!, value);
   }
 
   _findWithParent (parent: INode <T> | undefined, current: INode <T> | null, value: T) : { node: INode <T> | null, parent: INode <T> | undefined } {
@@ -71,10 +71,10 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     }
 
     if (current.value !== null && current.value > value) {
-      return this._findWithParent(current, current.left, value);
+      return this._findWithParent(current, current.left!, value);
     }
 
-    return this._findWithParent(current, current.right, value);
+    return this._findWithParent(current, current.right!, value);
   }
 
   findWithParent (value: T) : { node: INode <T> | null, parent: INode <T> | undefined } {
@@ -143,59 +143,59 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     }
   };
 
-  traverse (order: string) : INode <T> [] {
-    const result: INode <T> [] = [];
+  traverse (order: string) : T [] {
+    const result: T [] = [];
     switch (order) {
       case 'pre':
-        return this._preOrder(this.root, result);
+        return this._preOrder(this.root!, result);
       case 'in':
-        return this._inOrder(this.root, result);
+        return this._inOrder(this.root!, result);
       case 'post':
-        return this._postOrder(this.root, result);
+        return this._postOrder(this.root!, result);
       default:
         return [];
     }
   }
 
-  _preOrder (current: INode <T>, result: INode <T> []) : INode <T> [] {
+  _preOrder (current: INode <T>, result: T []) : T [] {
     if (current === null) {
       return result;
     }
 
     // Process
-    result.push(current.value);
+    result.push(current.value!);
 
-    this._preOrder(current.left, result);
-    this._preOrder(current.right, result);
+    this._preOrder(current.left!, result);
+    this._preOrder(current.right!, result);
 
     return result;
   };
 
-  _inOrder (current: INode <T>, result: INode <T> []) : INode <T> [] {
+  _inOrder (current: INode <T>, result: T []) : T [] {
     if (current === null) {
       return result;
     }
 
-    this._inOrder(current.left, result);
+    this._inOrder(current.left!, result);
 
     // Process
-    result.push(current.value);
+    result.push(current.value!);
 
-    this._inOrder(current.right, result);
+    this._inOrder(current.right!, result);
 
     return result;
   };
 
-  _postOrder (current: INode <T>, result: INode <T> []) : INode <T> [] {
+  _postOrder (current: INode <T>, result: T []) : T [] {
     if (current === null) {
       return result;
     }
 
-    this._postOrder(current.left, result);
-    this._postOrder(current.right, result);
+    this._postOrder(current.left!, result);
+    this._postOrder(current.right!, result);
 
     // Process
-    result.push(current.value);
+    result.push(current.value!);
 
     return result;
   };

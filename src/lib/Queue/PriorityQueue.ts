@@ -1,4 +1,4 @@
-import { IItem, IQueue } from './@types';
+import { IItem } from './@types';
 import Queue from './Queue';
 
 class PriorityQueue <T> extends Queue <T> {

@@ -36,4 +36,8 @@
     color: $white;
     background-color: $button-secondary-color;
   }
+
+  &--active {
+    opacity: 0.7;
+  }
 }

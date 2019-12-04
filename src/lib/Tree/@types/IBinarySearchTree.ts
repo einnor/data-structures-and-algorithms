@@ -10,10 +10,10 @@ type IBinarySearchTree <T> = {
   _find: (current: INode <T>, value: T) => INode <T> | undefined;
   findWithParent: (value: T) => { node: INode <T> | null, parent: INode <T> | undefined };
   _findWithParent: (parent: INode <T> | undefined, current: INode <T> | null, value: T) => { node: INode <T> | null, parent: INode <T> | undefined };
-  traverse: (order: 'pre' | 'in' | 'post') => INode <T> [];
-  _preOrder: (current: INode <T>, result: INode <T> []) => INode <T> [];
-  _inOrder: (current: INode <T>, result: INode <T> []) => INode <T> [];
-  _postOrder: (current: INode <T>, result: INode <T> []) => INode <T> [];
+  traverse: (order: 'pre' | 'in' | 'post') => T [];
+  _preOrder: (current: INode <T>, result: T []) => T [];
+  _inOrder: (current: INode <T>, result: T []) => T [];
+  _postOrder: (current: INode <T>, result: T []) => T [];
 };
 
 export default IBinarySearchTree;

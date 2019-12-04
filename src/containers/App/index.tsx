@@ -7,6 +7,7 @@ import DoublyLinkedList from '../DoublyLinkedList';
 import Stack from '../Stack';
 import Queue from '../Queue';
 import PriorityQueue from '../PriorityQueue';
+import BinarySearchTree from '../BinarySearchTree';
 
 import '../../styles/base.scss';
 
@@ -19,6 +20,7 @@ const App = () => {
       <Route path="/stacks" exact component={Stack} />
       <Route path="/queues/simple" exact component={Queue} />
       <Route path="/queues/priority" exact component={PriorityQueue} />
+      <Route path="/binary-search-trees" exact component={BinarySearchTree} />
     </>
   );
 };
