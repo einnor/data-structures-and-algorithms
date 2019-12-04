@@ -179,7 +179,7 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     this._inOrder(current.left, result);
 
     // Process
-    result.push(current);
+    result.push(current.value);
 
     this._inOrder(current.right, result);
 
@@ -195,7 +195,7 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     this._postOrder(current.right, result);
 
     // Process
-    result.push(current);
+    result.push(current.value);
 
     return result;
   };
