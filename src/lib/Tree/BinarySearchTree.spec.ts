@@ -228,4 +228,25 @@ describe('Binary Search Tree', () => {
 
     expect(bst.traverse('in')).toEqual([1, 2, 3, 4, 5, 6, 7]);
   });
+
+  it('should do post-order traversal', () => {
+    const bst: IBinarySearchTree <number> = new BinarySearchTree();
+    const node1: INode <number> = new Node({ value: 4 });
+    const node2: INode <number> = new Node({ value: 2 });
+    const node3: INode <number> = new Node({ value: 1 });
+    const node4: INode <number> = new Node({ value: 3 });
+    const node5: INode <number> = new Node({ value: 6 });
+    const node6: INode <number> = new Node({ value: 5 });
+    const node7: INode <number> = new Node({ value: 7 });
+
+    bst.add(node1);
+    bst.add(node2);
+    bst.add(node3);
+    bst.add(node4);
+    bst.add(node5);
+    bst.add(node6);
+    bst.add(node7);
+
+    expect(bst.traverse('post')).toEqual([1, 3, 2, 5, 7, 6, 4]);
+  });
 });
