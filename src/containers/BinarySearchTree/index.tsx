@@ -37,7 +37,7 @@ type State = {
   value: string;
   selectedTab: string;
   returnedValue: INode <number> | { node: INode <number> | null, parent: INode <number> | undefined } | number [] | undefined;
-  traversal: 'pre' | 'in' | 'post';
+  traversal: 'pre' | 'in' | 'post' | '';
 };
 
 const BinarySearchTreeImplementation = () => {
@@ -46,7 +46,7 @@ const BinarySearchTreeImplementation = () => {
     value: '',
     selectedTab: '',
     returnedValue: undefined,
-    traversal: 'pre',
+    traversal: '',
   });
 
   const onSwitch = (value: string) => setState({ ...state, selectedTab: value, returnedValue: undefined, value: '' });
@@ -90,13 +90,12 @@ const BinarySearchTreeImplementation = () => {
     setState({ ...state, value: '', returnedValue: node });
   }
 
-  const onTraverse = (traversal: 'pre' | 'in' | 'post') => {
-    setState({ ...state, traversal });
-    traverse();
-  }
+  const traverse = (traversal: string): void => {
+    if (traversal !== 'pre' && traversal !== 'in' && traversal !== 'post') {
+      return;
+    }
 
-  const traverse = (): void => {
-    const { traversal } = state;
+    setState({ ...state, traversal });
     const result = bst.traverse(traversal);
     setState({ ...state, returnedValue: result });
   }
@@ -107,9 +106,9 @@ const BinarySearchTreeImplementation = () => {
       case 'add':
         return showForm(add, 'Add');
       case 'find':
-        return showForm(find, 'Find', false);
+        return showForm(find, 'Find');
       case 'findWithParent':
-        return showForm(findWithParent, 'Find With Parent', false);
+        return showForm(findWithParent, 'Find With Parent');
       case 'remove':
         return showForm(remove, 'Remove');
       case 'traverse':
@@ -149,7 +148,7 @@ const BinarySearchTreeImplementation = () => {
     <div className="form">
       {
         ['pre', 'in', 'post'].map((traversal) => (
-          <Button active={traversal === state.traversal ? true : false} onClick={() => onTraverse(traversal === 'post' ? 'post' : traversal === 'in' ? 'in' : 'pre')} text={traversal.toUpperCase()} type="primary" />
+          <Button key={traversal} active={traversal === state.traversal ? true : false} onClick={() => traverse(traversal)} text={traversal.toUpperCase()} type="primary" style={{ marginRight: 10 }} />
         ))
       }
       {

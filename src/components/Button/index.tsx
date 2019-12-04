@@ -8,6 +8,7 @@ type Props = {
   disabled?: boolean;
   active?: boolean;
   text: string;
+  style?: object;
 };
 
 const Button = (props: Props) => {
@@ -16,6 +17,7 @@ const Button = (props: Props) => {
       className={`button button--${props.type ? props.type : 'default'} ${props.active ? 'button--active' : null}`}
       disabled={props.disabled}
       onClick={props.onClick}
+      style={props.style}
     >
       {props.text}
     </button>
