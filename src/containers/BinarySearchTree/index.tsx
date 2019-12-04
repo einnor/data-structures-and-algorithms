@@ -5,6 +5,7 @@ import BinarySearchTree from '../../lib/Tree/BinarySearchTree';
 import Node from '../../lib/Tree/Node';
 import { IBinarySearchTree, INode } from '../../lib/Tree/@types';
 import { ITab } from '../../@types';
+import Tree from './Tree';
 
 import './style.scss';
 
@@ -164,7 +165,9 @@ const BinarySearchTreeImplementation = () => {
         <Tabs tabs={tabs} onSwitch={onSwitch} />
         <TabPanel content={switchContent()} />
         <div className="bst-container">
-
+          <div className="tree">
+            <Tree root={bst.root} isRoot={true} />
+          </div>
         </div>
       </>
     </AppLayout>
