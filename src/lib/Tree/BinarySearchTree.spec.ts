@@ -121,7 +121,6 @@ describe('Binary Search Tree', () => {
     const node5: INode <number> = new Node({ value: 8 });
     const node6: INode <number> = new Node({ value: 6 });
     const node7: INode <number> = new Node({ value: 5 });
-    const node8: INode <number> = new Node({ value: 9 });
 
     bst.add(node1);
     bst.add(node2);
@@ -130,7 +129,6 @@ describe('Binary Search Tree', () => {
     bst.add(node5);
     bst.add(node6);
     bst.add(node7);
-    bst.add(node8);
 
     let removedNode = bst.remove(8);
     expect(removedNode!.value).toBe(8);

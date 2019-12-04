@@ -104,11 +104,10 @@ class BinarySearchTree <T> implements IBinarySearchTree <T> {
     }
 
     // Case 2
-    // Removed node has left child which has no right child
+    // Removed node has no right child
     // Promote left child of removed node
-    if (removedNode.left && removedNode.left.right === null) {
+    if (removedNode.right === null) {
       result.parent[side] = removedNode.left;
-      removedNode.left.right = removedNode.right;
       this.nodeCount = this.nodeCount - 1;
       return removedNode;
     }
