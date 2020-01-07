@@ -27,8 +27,9 @@ describe('Sort Class', () => {
   it('should generate ordered list of size N, from 1..N', () => {
     const size: number = 10;
     const sort: ISort = new Sort();
+    sort.generateOrderedList(size);
 
-    expect(sort.generateOrderedList(size).length).toBe(size);
+    expect(sort.list.length).toBe(size);
     expect(sort.list).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   });
 

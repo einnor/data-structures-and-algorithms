@@ -1,9 +1,9 @@
 import { ISort } from './@types';
 
 class Sort implements ISort {
-  swaps = 0;
-  comparisons = 0;
-  list = [];
+  swaps: number = 0;
+  comparisons: number = 0;
+  list: number [] = [];
 
   constructor (list: number[] = []) {
     this.list = list;
@@ -14,11 +14,13 @@ class Sort implements ISort {
   };
 
   generateRandomList (size: number) :  number [] {
-    return [...Array(size)].map(() => Math.floor(Math.random() * 101));
+    this.list = [...Array(size)].map(() => Math.floor(Math.random() * 101));
+    return this.list;
   };
 
   generateOrderedList (size: number) : number [] {
-    return [...Array.from(new Array(size), (value, index) => index + 1)];
+    this.list = [...Array.from(new Array(size), (value, index) => index + 1)];
+    return this.list;
   };
 
   reset () : void {
