@@ -7,4 +7,11 @@ describe('Bubble Sort', () => {
 
     expect(sort.sort()).toEqual([1, 2, 3]);
   });
+
+  it('should correctly calculate the number of comparison', () => {
+    const sort: ISort = new BubbleSort([5, 3, 1, 4, 6]);
+    sort.sort()
+
+    expect(sort.comparisons).toBe(25);
+  });
 });
