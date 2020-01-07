@@ -1,10 +1,10 @@
-type ISort <T> = {
+type ISort = {
   swaps: number;
   comparisons: number;
-  list: T [];
-  sort: () => T [];
-  generateRandomList: (size: number) => T [];
-  generateOrderedList: (size: number) => T [];
+  list: number [];
+  sort: () => number [];
+  generateRandomList: (size: number) => number [];
+  generateOrderedList: (size: number) => number [];
   clear: () => void;
 };
 

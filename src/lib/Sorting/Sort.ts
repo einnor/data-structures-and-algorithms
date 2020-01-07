@@ -1,20 +1,23 @@
 import { ISort } from './@types';
 
-class Sort <T> implements ISort <T> {
+class Sort implements ISort {
   swaps = 0;
   comparisons = 0;
   list = [];
 
-  constructor (list: T[] = []) {
+  constructor (list: number[] = []) {
     this.list = list;
   }
 
-  sort () : T [] {
+  sort () : number [] {
     return this.list;
   };
 
-  generateRandomList: (size: number) => T [];
-  generateOrderedList: (size: number) => T [];
+  generateRandomList (size: number) :  number [] {
+    return [...Array(size)].map(() => Math.floor(Math.random() * 101));
+  };
+
+  generateOrderedList: (size: number) => number [];
 
   clear () : void {
     this.list = [];
