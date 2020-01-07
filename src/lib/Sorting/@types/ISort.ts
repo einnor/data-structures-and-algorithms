@@ -3,8 +3,8 @@ type ISort <T> = {
   comparisons: number;
   list: T [];
   sort: () => T [];
-  generateRandomList: () => T [];
-  generateOrderedList: () => T [];
+  generateRandomList: (size: number) => T [];
+  generateOrderedList: (size: number) => T [];
   clear: () => void;
 };
 
