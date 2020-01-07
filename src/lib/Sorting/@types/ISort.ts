@@ -5,7 +5,7 @@ type ISort = {
   sort: () => number [];
   generateRandomList: (size: number) => number [];
   generateOrderedList: (size: number) => number [];
-  clear: () => void;
+  reset: () => void;
 };
 
 export default ISort;

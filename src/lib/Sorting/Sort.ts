@@ -21,7 +21,7 @@ class Sort implements ISort {
     return [...Array.from(new Array(size), (value, index) => index + 1)];
   };
 
-  clear () : void {
+  reset () : void {
     this.list = [];
     this.swaps = 0;
     this.comparisons = 0;

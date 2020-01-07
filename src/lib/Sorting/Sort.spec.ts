@@ -31,4 +31,15 @@ describe('Sort Class', () => {
     expect(sort.generateOrderedList(size).length).toBe(size);
     expect(sort.list).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
   });
+
+  it('should reset values', () => {
+    const size: number = 10;
+    const sort: ISort = new Sort();
+    sort.generateOrderedList(size);
+    sort.reset()
+
+    expect(sort.swaps).toBe(0);
+    expect(sort.comparisons).toBe(0);
+    expect(sort.list).toEqual([]);
+  });
 });
