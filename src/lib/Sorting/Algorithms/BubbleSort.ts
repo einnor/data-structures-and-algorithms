@@ -1,7 +1,7 @@
 import Sort from '../Sort';
 
-class BubbleSort <T> extends Sort <T> {
-  sort () : T [] {
+class BubbleSort extends Sort {
+  sort () : number [] {
     const list = this.list;
     let swaps = 0;
     let comparisons = 0;
