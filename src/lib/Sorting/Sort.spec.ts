@@ -9,4 +9,11 @@ describe('Sort Class', () => {
     expect(sort.comparisons).toBe(0);
     expect(sort.list).toEqual([]);
   });
+
+  it('should accept a list in constructor', () => {
+    const list: number[] = [1, 2, 3];
+    const sort: ISort = new Sort(list);
+
+    expect(sort.list).toEqual(list);
+  });
 });
