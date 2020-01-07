@@ -1,4 +1,4 @@
-import { faLink, faLayerGroup,faEllipsisH, faTree, faTable, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faLink, faLayerGroup,faEllipsisH, faTree, faTable, faHome, faSort } from '@fortawesome/free-solid-svg-icons'
 
 import { IMenuItem } from '../../@types';
 
@@ -62,6 +62,34 @@ const menuList: IMenuItem[] = [
     path: '/hash-tables',
     icon: faTable,
     children: null
+  },
+  {
+    id: 'sorting-algorithms',
+    text: 'Sorting Algorithms',
+    path: '/sorting-algorithms',
+    icon: faSort,
+    children: [
+      {
+        text: 'Bubble Sort',
+        path: '/sorting-algorithms/bubble-sort',
+      },
+      {
+        text: 'Insertion Sort',
+        path: '/sorting-algorithms/insertion-sort',
+      },
+      {
+        text: 'Selection Sort',
+        path: '/sorting-algorithms/selection-sort',
+      },
+      {
+        text: 'Merge Sort',
+        path: '/sorting-algorithms/merge-sort',
+      },
+      {
+        text: 'Quick Sort',
+        path: '/sorting-algorithms/quick-sort',
+      },
+    ],
   },
 ];
 
