@@ -17,7 +17,9 @@ class Sort implements ISort {
     return [...Array(size)].map(() => Math.floor(Math.random() * 101));
   };
 
-  generateOrderedList: (size: number) => number [];
+  generateOrderedList (size: number) : number [] {
+    return [...Array.from(new Array(size), (value, index) => index + 1)];
+  };
 
   clear () : void {
     this.list = [];
