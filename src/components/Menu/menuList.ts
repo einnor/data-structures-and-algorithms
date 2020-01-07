@@ -65,7 +65,7 @@ const menuList: IMenuItem[] = [
   },
   {
     id: 'sorting-algorithms',
-    text: 'Sorting Algorithms',
+    text: 'Sorting Algos',
     path: '/sorting-algorithms',
     icon: faSort,
     children: [
