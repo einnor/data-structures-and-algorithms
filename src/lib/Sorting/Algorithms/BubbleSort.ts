@@ -25,3 +25,5 @@ class BubbleSort extends Sort {
     return list;
   };
 }
+
+export default BubbleSort;
