@@ -11,11 +11,11 @@ class MergeSort extends Sort {
       if (left[leftCursor] < right[rightCursor]) {
         result.push(left[leftCursor]);
         leftCursor += 1;
-        this.swaps += 1;
       } else {
         result.push(right[rightCursor]);
         rightCursor += 1;
       }
+      this.swaps += 1;
       this.comparisons += 1;
     }
     return result.concat(left.slice(leftCursor)).concat(right.slice(rightCursor));
