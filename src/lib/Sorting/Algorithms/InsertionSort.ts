@@ -10,13 +10,16 @@ class InsertionSort extends Sort {
     for (let i = 1; i < length; i++) {
       let key = list[i];
       let j = i - 1;
-      while (j >= 0 && list[j] > key) {
-        list[j + 1] = list[j];
-        j = j - 1;
-        swaps += 1;
+      while (j >= 0) {
+        if (list[j] > key) {
+          const temp = list[j + 1];
+          list[j + 1] = list[j];
+          list[j] = temp;
+          swaps += 1;
+        }
+        j -= 1;
+        comparisons += 1;
       }
-      list[j + 1] = key;
-      comparisons += 1;
     }
 
     this.swaps = swaps;
