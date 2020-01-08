@@ -23,15 +23,14 @@ class MergeSort extends Sort {
 
   sort () : number [] {
     const list = this.list;
-    if (list.length < 2) {
-      return list;
-    }
-
     return this.mergeSort(list);
   };
 
   mergeSort (list: number[]) : number [] {
-    const length = this.list.length;
+    if (list.length < 2) {
+      return list;
+    }
+    const length = list.length;
     const mid = Math.floor(length / 2);
     const left = list.slice(0, mid);
     const right = list.slice(mid);
