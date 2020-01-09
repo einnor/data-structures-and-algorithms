@@ -8,6 +8,7 @@ import Stack from '../Stack';
 import Queue from '../Queue';
 import PriorityQueue from '../PriorityQueue';
 import BinarySearchTree from '../BinarySearchTree';
+import BubbleSort from '../BubbleSort';
 
 import '../../styles/base.scss';
 
@@ -21,6 +22,7 @@ const App = () => {
       <Route path="/queues/simple" exact component={Queue} />
       <Route path="/queues/priority" exact component={PriorityQueue} />
       <Route path="/binary-search-trees" exact component={BinarySearchTree} />
+      <Route path="/sorting-algorithms/bubble-sort" exact component={BubbleSort} />
     </>
   );
 };
