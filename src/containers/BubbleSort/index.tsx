@@ -6,6 +6,7 @@ import { ISort } from '../../lib/Sorting/@types';
 import { ITab } from '../../@types';
 
 import './style.scss';
+import Sort from '../../lib/Sorting/Sort';
 
 const tabs: ITab[] = [
   { text: 'Sort', value: 'sort' },
@@ -62,6 +63,16 @@ const BubbleSortImplementation = () => {
     setState({ ...state, [name]: value });
   };
 
+  const updateInputValuesWithOrderedList = () => {
+    const sort = new Sort([]);
+    setState({ ...state, value: sort.generateOrderedList(20).join(',') });
+  }
+
+  const updateInputValuesWithRandomList = () => {
+    const sort = new Sort([]);
+    setState({ ...state, value: sort.generateOrderedList(20).join(',') });
+  }
+
   const showForm = (fn: () => void, label: string, showValueInput = true): ReactNode => (
     <div className="form">
       {
@@ -69,7 +80,11 @@ const BubbleSortImplementation = () => {
           <TextInput type="text" name="value" label="Enter comma separated values" value={state.value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
         ) : null
       }
-      <Button onClick={fn} text={label} type="primary" />
+      <div className="buttons">
+        <Button onClick={fn} text={label} type="primary" />
+        <Button onClick={updateInputValuesWithOrderedList} text="Generate Ordered" type="default" />
+        <Button onClick={updateInputValuesWithRandomList} text="Generate Random" type="default" />
+      </div>
       {
         state.results ? (
         <div className="output">{JSON.stringify(state.results)}</div>
