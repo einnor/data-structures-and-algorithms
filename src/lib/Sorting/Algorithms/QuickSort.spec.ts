@@ -19,4 +19,14 @@ describe('Quick Sort', () => {
     sort.sort();
     expect(sort.comparisons).toBe(3);
   });
+
+  it('should correctly calculate the number of swaps', () => {
+    let sort: ISort = new QuickSort([5, 3, 1, 4, 6]);
+    sort.sort();
+    expect(sort.swaps).toBe(9);
+
+    sort = new QuickSort([3, 2, 1]);
+    sort.sort();
+    expect(sort.swaps).toBe(3);
+  });
 });
