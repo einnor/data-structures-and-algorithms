@@ -23,7 +23,7 @@ const SelectionSortImplementation = () => {
 
   const [state, setState] = useState<State>({
     value: '',
-    selectedTab: '',
+    selectedTab: 'sort',
     results: [],
     swaps: 0,
     comparisons: 0,
