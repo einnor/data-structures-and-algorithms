@@ -22,7 +22,7 @@ type State = {
 const BubbleSortImplementation = () => {
 
   const [state, setState] = useState<State>({
-    value: 'sort',
+    value: '',
     selectedTab: '',
     results: [],
     swaps: 0,
@@ -66,7 +66,7 @@ const BubbleSortImplementation = () => {
     <div className="form">
       {
         showValueInput ? (
-          <TextInput type="number" name="value" value={state.value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
+          <TextInput type="text" name="value" label="Enter comma separated values" value={state.value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
         ) : null
       }
       <Button onClick={fn} text={label} type="primary" />
