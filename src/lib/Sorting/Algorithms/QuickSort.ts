@@ -34,6 +34,7 @@ class QuickSort extends Sort {
         this.swap(list, i, partitionIndex);
         partitionIndex += 1;
       }
+      this.comparisons += 1;
     }
     this.swap(list, rightCursor, partitionIndex);
 
@@ -44,6 +45,7 @@ class QuickSort extends Sort {
     const temp = list[i];
     list[i] = list[j];
     list[j] = temp;
+    this.swaps += 1;
   }
 }
 
