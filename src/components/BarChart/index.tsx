@@ -7,11 +7,12 @@ import './style.scss';
 type Props = {
   data: IBarItem [];
   dataKeys: string [];
+  yAxis: string;
 };
 
 const COLORS = ['#173f5f', '#20639b', '#3caea3', '#f6d55c', '#ed553b'];
 
-const Chart = ({ data, dataKeys }: Props) => {
+const Chart = ({ data, dataKeys, yAxis }: Props) => {
   return (
     <div className="bar-chart-container">
       {
@@ -29,11 +30,13 @@ const Chart = ({ data, dataKeys }: Props) => {
             <YAxis />
             <Tooltip />
             <Legend />
-            {
-              dataKeys.map((dataKey, index) => (
-                <Bar key={dataKey} dataKey={dataKey} fill={COLORS[index % COLORS.length]} />
-              ))
-            }
+            <Bar dataKey={yAxis}>
+              {
+                data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))
+              }
+            </Bar>
           </BarChart>
         ) : null
       }

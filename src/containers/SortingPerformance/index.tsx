@@ -1,4 +1,4 @@
-import React, { useState, ReactNode, ChangeEvent } from 'react';
+import React, { useState, useEffect, ReactNode, ChangeEvent } from 'react';
 
 import { AppLayout, Tabs, TabPanel, TextInput, Button, BarChart, LineChart, SelectInput } from '../../components';
 import { BubbleSort, InsertionSort, SelectionSort, MergeSort, QuickSort } from '../../lib/Sorting/Algorithms';
@@ -48,23 +48,27 @@ const SortingPerformance = () => {
     data: [],
   });
 
+  useEffect(() => {
+    calculateBarChartStats();
+  }, [state.size]);
+
   const onSwitch = (value: string) => setState({ ...state, selectedTab: value, order: 'sorted', size: '10', data: [] });
 
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
-    setState({ ...state, [name]: value });
+    setState({ ...state, [name]: value, data: [] });
   };
 
   const onSelect = (event: ChangeEvent<HTMLSelectElement>): void => {
     const { name, value } = event.target;
-    setState({ ...state, [name]: value });
+    setState({ ...state, [name]: value, data: [] });
   };
 
   const switchContent = (): ReactNode => {
     const { selectedTab } = state;
     switch (selectedTab) {
       case 'bar-chart':
-        return (<BarChart data={state.data} dataKeys={dataKeys} />);
+        return (<BarChart data={state.data} dataKeys={dataKeys} yAxis={state.operation} />);
       case 'line-chart':
         return (<LineChart />);
       default:
@@ -78,23 +82,29 @@ const SortingPerformance = () => {
   };
 
   const calculateBarChartStats = () => {
-    const stats = [{
-      name: 'Performance Comparison',
-      bubble: calculateMetric(bubbleSort, state.order, state.operation),
-      insertion: calculateMetric(insertionSort, state.order, state.operation),
-      selection: calculateMetric(selectionSort, state.order, state.operation),
-      merge: calculateMetric(mergeSort, state.order, state.operation),
-      quick: calculateMetric(quickSort, state.order, state.operation),
-    }];
+    const stats = dataKeys.map((dataKey) => {
+      const instance = dataKey === 'bubble' ? bubbleSort :
+        dataKey === 'insertion' ? insertionSort :
+        dataKey === 'selection' ? selectionSort :
+        dataKey === 'merge' ? mergeSort :
+        quickSort;
+
+      return {
+        name: dataKey.charAt(0).toUpperCase() + dataKey.slice(1),
+        comparisons: calculateMetric(instance, state.order).comparisons,
+        swaps: calculateMetric(instance, state.order).swaps,
+      }
+   });
 
     setState({ ...state, data: stats });
   };
 
-  const calculateMetric = (instance: ISort, order: 'sorted' | 'random', metric: 'comparisons' | 'swaps') : number => {
+  const calculateMetric = (instance: ISort, order: 'sorted' | 'random') : { comparisons: number, swaps: number} => {
     const list = order === 'sorted' ? instance.generateOrderedList(parseInt(state.size, 10)) : instance.generateRandomList(parseInt(state.size, 10));
     instance.set(list);
     instance.sort();
-    return instance[metric];
+    const { comparisons, swaps } = instance;
+    return { comparisons, swaps };
   }
 
   const calculateLineChartStats = () => {};

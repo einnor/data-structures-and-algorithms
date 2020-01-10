@@ -1,10 +1,7 @@
 type IBarItem = {
   name: string,
-  bubble: number;
-  insertion: number;
-  selection: number;
-  merge: number;
-  quick: number;
+  comparisons: number;
+  swaps: number;
 };
 
 export default IBarItem;
