@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ReactNode, ChangeEvent } from 'react';
 
-import { AppLayout, Tabs, TabPanel, TextInput, Button, BarChart, LineChart, SelectInput } from '../../components';
+import { AppLayout, Tabs, TabPanel, TextInput, BarChart, LineChart, SelectInput } from '../../components';
 import { BubbleSort, InsertionSort, SelectionSort, MergeSort, QuickSort } from '../../lib/Sorting/Algorithms';
 import { ISort } from '../../lib/Sorting/@types';
 import { ITab, IBarItem } from '../../@types';
@@ -50,7 +50,7 @@ const SortingPerformance = () => {
 
   useEffect(() => {
     calculateBarChartStats();
-  }, [state.size]);
+  }, [state.size, state.order, state.operation]);
 
   const onSwitch = (value: string) => setState({ ...state, selectedTab: value, order: 'sorted', size: '10', data: [] });
 
@@ -118,13 +118,6 @@ const SortingPerformance = () => {
           <TextInput type="number" name="size" label="Item Count" value={state.size} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
           <SelectInput name="order" label="Data Order" data={orderOptions} active={state.order} onChange={(e: ChangeEvent<HTMLSelectElement>): void => onSelect(e)} />
           <SelectInput name="operation" label="Operation" data={operationOptions} active={state.operation} onChange={(e: ChangeEvent<HTMLSelectElement>): void => onSelect(e)} />
-          {
-            state.selectedTab === 'bar-chart' ? (
-              <Button onClick={calculateBarChartStats} text="Draw Chart" type="primary" />
-              ) : state.selectedTab === 'line-chart' ? (
-                <Button onClick={calculateLineChartStats} text="Draw Chart" type="primary" />
-              ) : null
-          }
         </div>
       </>
     </AppLayout>
