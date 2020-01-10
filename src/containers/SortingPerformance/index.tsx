@@ -22,12 +22,21 @@ const operationOptions = [
   { key: 'swaps', text: 'Swaps', value: 'swaps' },
 ];
 
+type IBarItem = {
+  name: string,
+  bubble: number;
+  insertion: number;
+  selection: number;
+  merge: number;
+  quick: number;
+};
+
 type State = {
   size: string;
   order: 'sorted' | 'random';
   operation: 'comparisons' | 'swaps';
   selectedTab: string;
-  data: [];
+  data: IBarItem[];
 };
 
 const SortingPerformance = () => {
@@ -75,9 +84,27 @@ const SortingPerformance = () => {
     }
   };
 
-  const drawBarChart = () => {};
+  const calculateBarChartStats = () => {
+    const stats = [{
+      name: 'Performance Comparison',
+      bubble: calculateMetric(bubbleSort, state.order, state.operation),
+      insertion: calculateMetric(insertionSort, state.order, state.operation),
+      selection: calculateMetric(selectionSort, state.order, state.operation),
+      merge: calculateMetric(mergeSort, state.order, state.operation),
+      quick: calculateMetric(quickSort, state.order, state.operation),
+    }];
 
-  const drawLineChart = () => {};
+    setState({ ...state, data: stats });
+  };
+
+  const calculateMetric = (instance: ISort, order: 'sorted' | 'random', metric: 'comparisons' | 'swaps') : number => {
+    const list = order === 'sorted' ? instance.generateOrderedList(parseInt(state.size, 10)) : instance.generateRandomList(parseInt(state.size, 10));
+    instance.set(list);
+    instance.sort();
+    return instance[metric];
+  }
+
+  const calculateLineChartStats = () => {};
 
   return (
     <AppLayout>
@@ -90,9 +117,9 @@ const SortingPerformance = () => {
           <SelectInput name="operation" label="Operation" data={operationOptions} active={state.operation} onChange={(e: ChangeEvent<HTMLSelectElement>): void => onSelect(e)} />
           {
             state.selectedTab === 'bar-chart' ? (
-              <Button onClick={drawBarChart} text="Draw Chart" type="primary" />
+              <Button onClick={calculateBarChartStats} text="Draw Chart" type="primary" />
               ) : state.selectedTab === 'line-chart' ? (
-                <Button onClick={drawLineChart} text="Draw Chart" type="primary" />
+                <Button onClick={calculateLineChartStats} text="Draw Chart" type="primary" />
               ) : null
           }
         </div>
