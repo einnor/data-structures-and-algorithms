@@ -12,7 +12,7 @@ const Node = ({ node }: Props) => {
     <li>
       {
         node ? (
-          <a href="#">{node.value}</a>
+          <button>{node.value}</button>
         ) : null
       }
       {

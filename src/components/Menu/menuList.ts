@@ -89,6 +89,10 @@ const menuList: IMenuItem[] = [
         text: 'Quick Sort',
         path: '/sorting-algorithms/quick-sort',
       },
+      {
+        text: 'Performance',
+        path: '/sorting-algorithms/performance',
+      },
     ],
   },
 ];
