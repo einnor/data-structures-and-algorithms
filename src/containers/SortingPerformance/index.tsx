@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { AppLayout, BarChart } from '../../components';
+import { AppLayout, BarChart, LineChart } from '../../components';
 import './style.scss';
 
 const SortingPerformance = () => {
@@ -10,6 +10,7 @@ const SortingPerformance = () => {
       <>
         Sorting performance
         <BarChart />
+        <LineChart />
       </>
     </AppLayout>
   )
