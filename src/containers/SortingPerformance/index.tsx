@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from 'react';
+import React, { useState, ReactNode, ChangeEvent } from 'react';
 
 import { AppLayout, Tabs, TabPanel, TextInput, Button, BarChart, LineChart } from '../../components';
 import { BubbleSort, InsertionSort, SelectionSort, MergeSort, QuickSort } from '../../lib/Sorting/Algorithms';
@@ -36,6 +36,11 @@ const SortingPerformance = () => {
 
   const onSwitch = (value: string) => setState({ ...state, selectedTab: value, order: 'sorted', size: '10', data: [] });
 
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = event.target;
+    setState({ ...state, [name]: value });
+  };
+
   const switchContent = (): ReactNode => {
     const { selectedTab } = state;
     switch (selectedTab) {
@@ -53,11 +58,25 @@ const SortingPerformance = () => {
     }
   };
 
+  const drawBarChart = () => {};
+
+  const drawLineChart = () => {};
+
   return (
     <AppLayout>
       <>
         <Tabs tabs={tabs} onSwitch={onSwitch} />
         <TabPanel content={switchContent()} />
+        <div className="form">
+          <TextInput type="number" name="size" label="Item Count" value={state.size} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
+          {
+            state.selectedTab === 'bar-chart' ? (
+              <Button onClick={drawBarChart} text="Draw Chart" type="primary" />
+              ) : state.selectedTab === 'line-chart' ? (
+                <Button onClick={drawLineChart} text="Draw Chart" type="primary" />
+              ) : null
+          }
+        </div>
       </>
     </AppLayout>
   )
