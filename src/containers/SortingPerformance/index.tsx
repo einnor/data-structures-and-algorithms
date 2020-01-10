@@ -3,7 +3,7 @@ import React, { useState, ReactNode, ChangeEvent } from 'react';
 import { AppLayout, Tabs, TabPanel, TextInput, Button, BarChart, LineChart, SelectInput } from '../../components';
 import { BubbleSort, InsertionSort, SelectionSort, MergeSort, QuickSort } from '../../lib/Sorting/Algorithms';
 import { ISort } from '../../lib/Sorting/@types';
-import { ITab } from '../../@types';
+import { ITab, IBarItem } from '../../@types';
 
 import './style.scss';
 
@@ -21,15 +21,6 @@ const operationOptions = [
   { key: 'comparisons', text: 'Comparisons', value: 'comparisons' },
   { key: 'swaps', text: 'Swaps', value: 'swaps' },
 ];
-
-type IBarItem = {
-  name: string,
-  bubble: number;
-  insertion: number;
-  selection: number;
-  merge: number;
-  quick: number;
-};
 
 type State = {
   size: string;
@@ -71,7 +62,7 @@ const SortingPerformance = () => {
     const { selectedTab } = state;
     switch (selectedTab) {
       case 'bar-chart':
-        return (<BarChart />);
+        return (<BarChart data={state.data} />);
       case 'line-chart':
         return (<LineChart />);
       default:
