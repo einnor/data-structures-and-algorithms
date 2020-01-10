@@ -6,7 +6,6 @@ import { ISort } from '../../lib/Sorting/@types';
 import { ITab } from '../../@types';
 
 import './style.scss';
-import Sort from '../../lib/Sorting/Sort';
 
 const tabs: ITab[] = [
   { text: 'Enter Input', value: 'enter-input' },
