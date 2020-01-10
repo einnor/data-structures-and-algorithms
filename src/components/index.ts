@@ -6,6 +6,7 @@ import Tabs from './Tabs';
 import TabPanel from './TabPanel';
 import TextInput from './TextInput';
 import Button from './Button';
+import BarChart from './BarChart';
 
 export {
   AppLayout,
@@ -16,4 +17,5 @@ export {
   TabPanel,
   TextInput,
   Button,
+  BarChart,
 };
