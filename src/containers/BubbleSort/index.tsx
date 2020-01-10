@@ -22,6 +22,8 @@ type State = {
 
 const BubbleSortImplementation = () => {
 
+  const bubbleSort: ISort = new BubbleSort();
+
   const [state, setState] = useState<State>({
     value: '',
     selectedTab: 'sort',
@@ -39,8 +41,8 @@ const BubbleSortImplementation = () => {
     }
 
     const input = value.split(',').map((item) => parseInt(item, 10));
-    const sort: ISort = new BubbleSort(input);
-    setState({ ...state, results: sort.sort(), swaps: sort.swaps, comparisons: sort.comparisons });
+    bubbleSort.set(input);
+    setState({ ...state, results: bubbleSort.sort(), swaps: bubbleSort.swaps, comparisons: bubbleSort.comparisons });
   }
 
   const switchContent = (): ReactNode => {
