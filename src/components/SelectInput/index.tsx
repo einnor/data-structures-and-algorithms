@@ -24,7 +24,7 @@ const SelectInput = (props: Props) => {
   return (
     <div className="select-input-wrapper">
       <select
-        className="text-input"
+        className="select-input"
         placeholder={props.placeholder}
         disabled={props.disabled}
         name={props.name}

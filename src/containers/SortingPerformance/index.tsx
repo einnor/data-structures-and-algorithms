@@ -1,6 +1,6 @@
 import React, { useState, ReactNode, ChangeEvent } from 'react';
 
-import { AppLayout, Tabs, TabPanel, TextInput, Button, BarChart, LineChart } from '../../components';
+import { AppLayout, Tabs, TabPanel, TextInput, Button, BarChart, LineChart, SelectInput } from '../../components';
 import { BubbleSort, InsertionSort, SelectionSort, MergeSort, QuickSort } from '../../lib/Sorting/Algorithms';
 import { ISort } from '../../lib/Sorting/@types';
 import { ITab } from '../../@types';
@@ -12,9 +12,20 @@ const tabs: ITab[] = [
   { text: 'Line Graph', value: 'line-chart' },
 ];
 
+const orderOptions = [
+  { key: 'sorted', text: 'Sorted', value: 'sorted' },
+  { key: 'random', text: 'Random', value: 'random' },
+];
+
+const operationOptions = [
+  { key: 'comparisons', text: 'Comparisons', value: 'comparisons' },
+  { key: 'swaps', text: 'Swaps', value: 'swaps' },
+];
+
 type State = {
   size: string;
   order: 'sorted' | 'random';
+  operation: 'comparisons' | 'swaps';
   selectedTab: string;
   data: [];
 };
@@ -30,6 +41,7 @@ const SortingPerformance = () => {
   const [state, setState] = useState<State>({
     size: '10',
     order: 'sorted',
+    operation: 'comparisons',
     selectedTab: 'bar-chart',
     data: [],
   });
@@ -37,6 +49,11 @@ const SortingPerformance = () => {
   const onSwitch = (value: string) => setState({ ...state, selectedTab: value, order: 'sorted', size: '10', data: [] });
 
   const onChange = (event: ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = event.target;
+    setState({ ...state, [name]: value });
+  };
+
+  const onSelect = (event: ChangeEvent<HTMLSelectElement>): void => {
     const { name, value } = event.target;
     setState({ ...state, [name]: value });
   };
@@ -69,6 +86,8 @@ const SortingPerformance = () => {
         <TabPanel content={switchContent()} />
         <div className="form">
           <TextInput type="number" name="size" label="Item Count" value={state.size} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
+          <SelectInput name="order" label="Data Order" data={orderOptions} active={state.order} onChange={(e: ChangeEvent<HTMLSelectElement>): void => onSelect(e)} />
+          <SelectInput name="operation" label="Operation" data={operationOptions} active={state.operation} onChange={(e: ChangeEvent<HTMLSelectElement>): void => onSelect(e)} />
           {
             state.selectedTab === 'bar-chart' ? (
               <Button onClick={drawBarChart} text="Draw Chart" type="primary" />

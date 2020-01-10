@@ -8,6 +8,7 @@ import TextInput from './TextInput';
 import Button from './Button';
 import BarChart from './BarChart';
 import LineChart from './LineChart';
+import SelectInput from './SelectInput';
 
 export {
   AppLayout,
@@ -20,4 +21,5 @@ export {
   Button,
   BarChart,
   LineChart,
+  SelectInput,
 };
