@@ -9,6 +9,8 @@ type Props = {
   dataKeys: string [];
 };
 
+const COLORS = ['#173f5f', '#20639b', '#3caea3', '#f6d55c', '#ed553b'];
+
 const Chart = ({ data, dataKeys }: Props) => {
   return (
     <div className="bar-chart-container">
@@ -28,8 +30,8 @@ const Chart = ({ data, dataKeys }: Props) => {
             <Tooltip />
             <Legend />
             {
-              dataKeys.map((dataKey) => (
-                <Bar key={dataKey} dataKey={dataKey} fill="#8884d8" />
+              dataKeys.map((dataKey, index) => (
+                <Bar key={dataKey} dataKey={dataKey} fill={COLORS[index % COLORS.length]} />
               ))
             }
           </BarChart>
