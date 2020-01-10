@@ -13,6 +13,7 @@ import InsertionSort from '../InsertionSort';
 import SelectionSort from '../SelectionSort';
 import MergeSort from '../MergeSort';
 import QuickSort from '../QuickSort';
+import SortingPerformance from '../SortingPerformance';
 
 import '../../styles/base.scss';
 
@@ -31,6 +32,7 @@ const App = () => {
       <Route path="/sorting-algorithms/selection-sort" exact component={SelectionSort} />
       <Route path="/sorting-algorithms/merge-sort" exact component={MergeSort} />
       <Route path="/sorting-algorithms/quick-sort" exact component={QuickSort} />
+      <Route path="/sorting-algorithms/performance" exact component={SortingPerformance} />
     </>
   );
 };
