@@ -17,6 +17,14 @@ describe('Sort Class', () => {
     expect(sort.list).toEqual(list);
   });
 
+  it('should set a list', () => {
+    const list: number[] = [1, 2, 3];
+    const sort: ISort = new Sort();
+    sort.set(list);
+
+    expect(sort.list).toEqual(list);
+  });
+
   it('should generate random list of size N', () => {
     const size: number = 10;
     const sort: ISort = new Sort();
