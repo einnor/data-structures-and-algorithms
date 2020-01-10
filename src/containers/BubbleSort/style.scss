@@ -5,6 +5,10 @@
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-start;
+
+  & button {
+    margin-right: 10px;
+  }
 }
 
 .output-wrapper {

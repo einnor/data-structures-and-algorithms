@@ -16,7 +16,7 @@ const tabs: ITab[] = [
 
 type State = {
   value: string;
-  size: number;
+  size: string;
   selectedTab: string;
   results: number [];
   swaps: number;
@@ -29,14 +29,14 @@ const BubbleSortImplementation = () => {
 
   const [state, setState] = useState<State>({
     value: '',
-    size: 10,
+    size: '10',
     selectedTab: 'enter-input',
     results: [],
     swaps: 0,
     comparisons: 0,
   });
 
-  const onSwitch = (value: string) => setState({ ...state, selectedTab: value, value: '', size: 10, swaps: 0, comparisons: 0, results: [] });
+  const onSwitch = (value: string) => setState({ ...state, selectedTab: value, value: '', size: '10', swaps: 0, comparisons: 0, results: [] });
 
   const sort = (): void => {
     const { value } = state;
@@ -55,9 +55,9 @@ const BubbleSortImplementation = () => {
       case 'enter-input':
         return showForm(sort, 'Sort List');
       case 'generate-ordered-input':
-        return showForm(sort, 'Sort List');
+        return showForm(sort, 'Sort List', true, true);
       case 'generate-random-input':
-        return showForm(sort, 'Sort List');
+        return showForm(sort, 'Sort List', true, true);
       default:
         return (
           <>
@@ -74,11 +74,11 @@ const BubbleSortImplementation = () => {
   };
 
   const generateOrderedList = () => {
-    setState({ ...state, value: bubbleSort.generateOrderedList(state.size).join(',') });
+    setState({ ...state, value: bubbleSort.generateOrderedList(parseInt(state.size, 10)).join(',') });
   }
 
   const generateRandomList = () => {
-    setState({ ...state, value: bubbleSort.generateRandomList(state.size).join(',') });
+    setState({ ...state, value: bubbleSort.generateRandomList(parseInt(state.size, 10)).join(',') });
   }
 
   const showForm = (fn: () => void, label: string, showValueInput: boolean = true, showSizeInput: boolean = false): ReactNode => (
@@ -86,7 +86,7 @@ const BubbleSortImplementation = () => {
       <div className="form">
         {
           showValueInput ? (
-            <TextInput type="text" name="value" label="Enter comma separated values" value={state.value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
+            <TextInput type="text" name="value" label={showSizeInput ? 'Generated Input' : 'Enter comma separated values'} value={state.value} onChange={(e: ChangeEvent<HTMLInputElement>): void => onChange(e)} />
           ) : null
         }
         {
@@ -104,33 +104,21 @@ const BubbleSortImplementation = () => {
         <Button onClick={fn} text={label} type="primary" />
       </div>
       <div className="output-wrapper">
-        {
-          state.results ? (
-          <div className="output">
-            Sorted List:
-            &nbsp;
-            {JSON.stringify(state.results)}
-          </div>
-          ) : null
-        }
-        {
-          state.swaps ? (
-          <div className="output">
-            Swaps:
-            &nbsp;
-            {state.swaps}
-          </div>
-          ) : null
-        }
-        {
-          state.comparisons ? (
-          <div className="output">
-            Comparisons:
-            &nbsp;
-            {state.comparisons}
-          </div>
-          ) : null
-        }
+        <div className="output">
+          Sorted List:
+          &nbsp;
+          {JSON.stringify(state.results)}
+        </div>
+        <div className="output">
+          Swaps:
+          &nbsp;
+          {state.swaps}
+        </div>
+        <div className="output">
+          Comparisons:
+          &nbsp;
+          {state.comparisons}
+        </div>
       </div>
     </>
   );
