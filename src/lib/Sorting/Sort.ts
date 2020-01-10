@@ -9,6 +9,10 @@ class Sort implements ISort {
     this.list = list;
   }
 
+  set (input: number []) {
+    this.list = input;
+  }
+
   sort () : number [] {
     return this.list;
   };
