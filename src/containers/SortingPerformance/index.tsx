@@ -22,6 +22,8 @@ const operationOptions = [
   { key: 'swaps', text: 'Swaps', value: 'swaps' },
 ];
 
+const dataKeys = ['bubble', 'insertion', 'select', 'merge', 'quick'];
+
 type State = {
   size: string;
   order: 'sorted' | 'random';
@@ -62,7 +64,7 @@ const SortingPerformance = () => {
     const { selectedTab } = state;
     switch (selectedTab) {
       case 'bar-chart':
-        return (<BarChart data={state.data} />);
+        return (<BarChart data={state.data} dataKeys={dataKeys} />);
       case 'line-chart':
         return (<LineChart />);
       default:

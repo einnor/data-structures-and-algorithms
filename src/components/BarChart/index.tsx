@@ -6,9 +6,10 @@ import './style.scss';
 
 type Props = {
   data: IBarItem [];
+  dataKeys: string [];
 };
 
-const Chart = ({ data }: Props) => {
+const Chart = ({ data, dataKeys }: Props) => {
   return (
     <div className="bar-chart-container">
       {
@@ -26,8 +27,11 @@ const Chart = ({ data }: Props) => {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Bar dataKey="pv" fill="#8884d8" />
-            <Bar dataKey="uv" fill="#82ca9d" />
+            {
+              dataKeys.map((dataKey) => (
+                <Bar key={dataKey} dataKey={dataKey} fill="#8884d8" />
+              ))
+            }
           </BarChart>
         ) : null
       }
